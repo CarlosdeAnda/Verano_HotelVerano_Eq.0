@@ -50,7 +50,9 @@ def cerrarSes():
 def ventanaTemplate():
    return render_template('template.html')
 
-
+@app.route('/AddEmpleado')
+def ventanaAddEmpleado():
+    return render_template('Empleados/AddEmpleado.html')
 
 if __name__ == '__main__':
     app.run(debug = True)
