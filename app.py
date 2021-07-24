@@ -46,6 +46,10 @@ def cerrarSes():
         abort(404)
 
 
+@app.route('/template')
+def ventanaTemplate():
+   return render_template('template.html')
+
 
 
 if __name__ == '__main__':
