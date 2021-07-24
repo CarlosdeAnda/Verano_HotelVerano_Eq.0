@@ -58,7 +58,7 @@ def ventanaAddEmpleado():
 
 @app.route('/AddHabitacion')
 def ventanaRegistroHabitacion():
-   return render_template('Habitaciones/registrarhabitacion.html')
+   return render_template('Habitaciones/AddHabitacion.html')
 
 
 
