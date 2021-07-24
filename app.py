@@ -1,9 +1,10 @@
+import re
 from flask import Flask
 from flask import Flask,render_template,request,redirect,url_for,abort
 from flask_mysqldb import MySQL
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.utils import secure_filename
-from modelo.models import Empleados
+from modelo.models import Empleados,Habitaciones
 from flask_login import LoginManager, login_user, current_user, logout_user, login_required
 import os
 
@@ -53,6 +54,24 @@ def ventanaTemplate():
 @app.route('/AddEmpleado')
 def ventanaAddEmpleado():
     return render_template('Empleados/AddEmpleado.html')
+
+
+@app.route('/AddHabitacion')
+def ventanaRegistroHabitacion():
+   return render_template('Habitaciones/registrarhabitacion.html')
+
+
+
+@app.route('/agregarHabitacionDB', methods=['POST'])
+def agregarHabitacionDB():
+
+    habitacion=Habitaciones()
+    habitacion.piso=request.form['inputPiso']
+    habitacion.numerohabitacion=request.form['inputHabi']
+    habitacion.tipohabitacion=request.form['inputTipo']
+    habitacion.disponibilidad='Desocupado'
+    habitacion.insertar()
+    return redirect(url_for('ventanaRegistroHabitacion'))
 
 if __name__ == '__main__':
     app.run(debug = True)

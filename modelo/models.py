@@ -73,3 +73,31 @@ class Empleados(db.Model):
                 return emp
             else:
                 return None
+
+
+
+class Habitaciones(db.Model):
+    __tablename__='Habitaciones'
+    id_habitacion=Column(Integer,primary_key=True)
+    piso=Column(Integer,nullable=False)
+    numerohabitacion=Column(String,nullable=False)
+    disponibilidad=Column(String,nullable=False)
+    tipohabitacion=Column(String,nullable=False)
+    
+
+    def insertar(self):                                                                                                                                                                          
+        db.session.add(self)                                                                                                                                                                     
+        db.session.commit()                                                                                                                                                                      
+    def consultaGeneral(self):                                                                                                                                                                   
+        habitacion=self.query.all()                                                                                                                                                                   
+        return habitacion
+    def actualizar(self):
+        db.session.merge(self)
+        db.session.commit()
+    def eliminar(self):
+        habitacion=self.consultaIndividual()
+        db.session.delete(habitacion)
+        db.session.commit()
+    def consultaIndividual(self):
+        habitacion=self.query.get(self.id_habitacion)
+        return habitacion
