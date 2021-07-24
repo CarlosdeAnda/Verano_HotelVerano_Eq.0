@@ -1,126 +1,206 @@
 <!doctype html>
 <html lang="en">
-  <head>
-  	<title>Sidebar 01</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
-		
-		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-		<link rel="stylesheet" href="../static/css/style.css">
-  </head>
-  <body>
-		
-		<div class="wrapper d-flex align-items-stretch">
-			<nav id="sidebar">
-				<div class="p-4 pt-5">
-		  		<a href="#" class="img logo rounded-circle mb-5" style="background-image: url(../static/images/logo.jpg);"></a>
-	        <ul class="list-unstyled components mb-5">
-	          <li class="active">
-	            <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Administrador</a>
-	            <ul class="collapse list-unstyled" id="homeSubmenu">
-                <li>
-                    <a href="#">Empleados</a>
-                </li>
-                <li>
-                    <a href="#">Habitaciones</a>
-                </li>
-                <li>
-                    <a href="#">Compras</a>
-                </li>
-                <li>
-                  <a href="#">Proveedores</a>
+<head>
+  <title>Hotel Verano</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="../static/css/style.css">
+</head>
+
+<body>
+
+  <div class="wrapper d-flex align-items-stretch">
+    <nav id="sidebar">
+      <div class="p-4 pt-5">
+        <a href="#" class="img logo rounded-circle mb-5" style="background-image: url(../static/images/logo.jpg);"></a>
+        <center>
+          Carlos Esparza de Anda
+          <br>
+          Empleado General
+        </center>
+
+        <br>
+        <ul class="list-unstyled components mb-5">
+          <li>
+            <a href="#Empleados" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Empleados</a>
+            <ul class="collapse list-unstyled" id="Empleados">
+              <li>
+                <a href="/AddEmpleado">Añadir Empleados</a>
               </li>
-	            </ul>
-	          </li>
-	          <li>
-              <a href="#pageReservaciones" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Reservaciones</a>
-              <ul class="collapse list-unstyled" id="pageReservaciones">
-                <li>
-                    <a href="#">Añadir Reservación</a>
-                </li>
-                <li>
-                    <a href="#">Modificar Reservación</a>
-                </li>
-                <li>
-                    <a href="#">Eliminar Reservación</a>
-                </li>
-              </ul>
-	          </li>
-	          <li>
-              <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Clientes</a>
-              <ul class="collapse list-unstyled" id="pageSubmenu">
-                <li>
-                    <a href="#">Añadir Cliente</a>
-                </li>
-                <li>
-                    <a href="#">Modificar Ciente</a>
-                </li>
-                <li>
-                    <a href="#">Eliminar Cliente</a>
-                </li>
-              </ul>
-	          </li>
-	          <li>
-              <a href="#">Mi Perfil</a>
-	          </li>
-	          <li>
-              <a href="#">Cerrar Sesión</a>
-	          </li>
-	        </ul>
+              <li>
+                <a href="/ModEmpleado">Modificar Empleados</a>
+              </li>
+              <li>
+                <a href="/DelEmpleado">Eliminar Empleados</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#Habitaciones" data-toggle="collapse" aria-expanded="false"
+              class="dropdown-toggle">Habitaciones</a>
+            <ul class="collapse list-unstyled" id="Habitaciones">
+              <li>
+                <a href="/AddHabitacion">Añadir Habitaciones</a>
+              </li>
+              <li>
+                <a href="/ModHabitacion">Modificar Habitaciones</a>
+              </li>
+              <li>
+                <a href="/DelHabitacion">Eliminar Habitaciones</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#Compras" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Compras</a>
+            <ul class="collapse list-unstyled" id="Compras">
+              <li>
+                <a href="/AddCompras">Añadir Compras</a>
+              </li>
+              <li>
+                <a href="/ModCompras">Modificar Compras</a>
+              </li>
+              <li>
+                <a href="/DelCompras">Eliminar Compras</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#Proveedores" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Proveedores</a>
+            <ul class="collapse list-unstyled" id="Proveedores">
+              <li>
+                <a href="/AddProveedores">Añadir Proveedores</a>
+              </li>
+              <li>
+                <a href="/ModProveedores">Modificar Proveedores</a>
+              </li>
+              <li>
+                <a href="/DelProveedores">Eliminar Proveedores</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#pageReservaciones" data-toggle="collapse" aria-expanded="false"
+              class="dropdown-toggle">Reservaciones</a>
+            <ul class="collapse list-unstyled" id="pageReservaciones">
+              <li>
+                <a href="/AddReservacion">Añadir Reservación</a>
+              </li>
+              <li>
+                <a href="/ModReservacion">Modificar Reservación</a>
+              </li>
+              <li>
+                <a href="/DelReservacion">Eliminar Reservación</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Clientes</a>
+            <ul class="collapse list-unstyled" id="pageSubmenu">
+              <li>
 
-	        <div class="footer">
-	        	<p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-						  Toda la página es propiedad de Hotel Verano <i class="icon-heart" aria-hidden="true"></i> </a>
-						  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
-	        </div>
+              <li>
+                <a href="/AddCliente">Añadir Cliente</a>
+              </li>
+              <li>
+                <a href="/ModCliente">Modificar Ciente</a>
+              </li>
+              <li>
+                <a href="/DelCliente">Eliminar Cliente</a>
+              </li>
+            </ul>
+          </li>
 
-	      </div>
-    	</nav>
+          </li>
+          <li>
+            <a href="/MiPerfil">Mi Perfil</a>
+          </li>
+          <li>
+            <a href="/CerrarSesion">Cerrar Sesión</a>
+          </li>
+        </ul>
 
-        <!-- Page Content  -->
-      <div id="content" class="p-4 p-md-5">
+        <div class="footer">
+          <p>
+            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+            Toda la página y sus recursos es propiedad de Hotel Verano <i class="icon-heart" aria-hidden="true"></i>
+            </a>
+            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+          </p>
+        </div>
 
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-          <div class="container-fluid">
-
-            <button type="button" id="sidebarCollapse" class="btn btn-primary">
-              <i class="fa fa-bars"></i>
-              <span class="sr-only">Toggle Menu</span>
-            </button>
-            <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <i class="fa fa-bars"></i>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="nav navbar-nav ml-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">About</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Portfolio</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Contact</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </nav>
-
-        <h2 class="mb-4">Sidebar #01</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
       </div>
-		</div>
+    </nav>
+
+    <!-- Page Content  -->
+    <div id="content" class="p-4 p-md-5">
+
+      <button type="button" id="sidebarCollapse" class="btn btn-primary">
+        <i class="fa fa-bars"></i>
+        <span class="sr-only">Toggle Menu</span>
+      </button>
+      <br>
+      <br>
+      <br>
+
+      <!-- Aqui inicia mi código :) -->
+      <form>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="inputEmail4">Email</label>
+            <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="inputPassword4">Password</label>
+            <input type="password" class="form-control" id="inputPassword4" placeholder="Password">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="inputAddress">Address</label>
+          <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+        </div>
+        <div class="form-group">
+          <label for="inputAddress2">Address 2</label>
+          <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="inputCity">City</label>
+            <input type="text" class="form-control" id="inputCity">
+          </div>
+          <div class="form-group col-md-4">
+            <label for="inputState">State</label>
+            <select id="inputState" class="form-control">
+              <option selected>Choose...</option>
+              <option>...</option>
+            </select>
+          </div>
+          <div class="form-group col-md-2">
+            <label for="inputZip">Zip</label>
+            <input type="text" class="form-control" id="inputZip">
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="gridCheck">
+            <label class="form-check-label" for="gridCheck">
+              Check me out
+            </label>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Sign in</button>
+      </form>
+      <!--Aquí termina mi código :( -->
+    </div>
 
     <script src="../static/js/jquery.min.js"></script>
     <script src="../static/js/popper.js"></script>
     <script src="../static/js/bootstrap.min.js"></script>
     <script src="../static/js/main.js"></script>
-  </body>
+</body>
+
 </html>
