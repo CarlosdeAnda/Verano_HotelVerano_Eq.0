@@ -78,7 +78,18 @@ def agregarEmpleadoBD():
     empleado.insertar()
     return redirect(url_for('ventanaAddEmpleado'))
 
-
+@app.route('/ModEmpleado')
+def GetAllEmpleado():
+    Empleado=Empleados()
+    datos=Empleado.consultaGeneral()
+    return render_template('Empleados/GetAllEmpleado.html',datos=datos)
+   
+@app.route('/DelEmpleado/<int:id>')
+def DelEmpleado(id):
+    Empleado=Empleados()
+    Empleado.estatus_usuario="Inactivo"
+    Empleado.actualizar()
+    return redirec(url_for('GetAllEmpleado'))
 
 
 
