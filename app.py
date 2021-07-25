@@ -87,10 +87,41 @@ def GetAllEmpleado():
 @app.route('/DelEmpleado/<int:id>')
 def DelEmpleado(id):
     Empleado=Empleados()
+    Empleado.id_empleado=id
+    Empleado.consultaIndividual()
     Empleado.estatus_usuario="Inactivo"
     Empleado.actualizar()
-    return redirec(url_for('GetAllEmpleado'))
+    return redirect(url_for('GetAllEmpleado'))
 
+@app.route('/enviarEmpleaadoAUpdate/<int:id>')
+def enviarEmpleaadoAUpdate(id):
+    Empleado=Empleados()
+    Empleado.id_empleado=id
+    datos=Empleado.consultaIndividual()
+    return render_template('Empleados/UpdateEmpleado.html',datos=datos)
+
+
+@app.route('/actualizarEmpleadoBD', methods=['POST'])
+def actualizarEmpleadoBD():
+
+    empleado=Empleados() 
+    empleado.id_empleado=request.form['inputId']
+    empleado.nombre=request.form['inputNombre']
+    empleado.apellido_paterno=request.form['inputApellidoPaterno']
+    empleado.apellido_materno=request.form['inputApellidoMaterno']
+    empleado.genero=request.form['inputGenero']
+    empleado.fecha_nacimiento=request.form['inputFechaNacimiento']
+    empleado.fecha_registro=request.form['inputFechaRegistro']
+    empleado.telefono=request.form['inputTelefono']
+    empleado.tipo=request.form['inputTipo']
+    empleado.usuario=request.form['inputUsuario']
+    empleado.passwd=request.form['inputPassword1']
+    empleado.foto=request.form['inputFoto']
+    empleado.estatus_usuario="Activo"
+    Clave= empleado.apellido_paterno[:2]+empleado.apellido_materno[:1]+empleado.nombre[:1]+str(empleado.fecha_nacimiento.split("-")[0][2:])+str(empleado.fecha_nacimiento.split("-")[1])+empleado.fecha_nacimiento.split("-")[2]+random.choice(string.ascii_letters)+str(random.randrange(10))+random.choice(string.ascii_letters)
+    empleado.clave=Clave
+    empleado.actualizar()
+    return redirect(url_for('GetAllEmpleado'))
 
 
 #Empieza Habitaciones

@@ -146,45 +146,104 @@
       <br>
 
       <!-- Aqui inicia mi código :) -->
+      <h3>Modificar Empleado <span class="badge badge-secondary">Modificación</span></h3>
+      <form method="POST" action="/actualizarEmpleadoBD">
+
+        <div class="row">
+
+        <div class="col">
+          <label >Id</label>
+          <input type="text" class="form-control" id="inputNombre" name="inputId" value="{{datos.id_empleado}}"readonly>
+        </div>
+      </div>
+
+        <div class="row">
+
+          <div class="col">
+            <label >Nombre</label>
+            <input type="text" class="form-control" id="inputNombre" name="inputNombre" value="{{datos.nombre}}">
+          </div>
+
+ 
+          <div class="col">
+          <label for="inputApellidoPaterno">Apellido Paterno</label>
+          <input type="text" class="form-control" id="inputApellidoPaterno" name="inputApellidoPaterno"value="{{datos.apellido_paterno}}">
+        </div>
+
+
+        <div class="col">
+          <label for="inputApellidoMaterno">Apellido Materno</label>
+          <input type="text" class="form-control" id="inputApellidoMaterno" name="inputApellidoMaterno" value="{{datos.apellido_materno}}">
+        </div>
+      </div>
+      <br>
       
-      <h3>Empleados</h3>
+      <div class="row">
+        <div class="col">
+        <label for="inputGenero">Género</label>
+        <select id="inputGenero" name="inputGenero" class="form-control" >
+          <option value="Masculino">Masculino</option>
+          <option value="Femenino">Femenino</option>
+          <option value="Otro">Otro</option>
+        </select>
+        </div>
+      </div>
+      <br>
 
-      <table class="table">
-        <thead class="thead-dark">
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Nombre</th>
-            <th scope="col">Genero</th>
-            <th scope="col">Fecha Registro</th>
-            <th scope="col">Telefono</th>
-            <th scope="col">Tipo</th>
-            <th scope="col">Estatus</th>
-            <th scope="col"></th>
-            <th scope="col"></th>
-          </tr>
-        </thead>
-        <tbody>
+        <div class="row">
+          <div class="col">
+          <label for="inputFechaNacimiento">Fecha de Nacimiento</label>
+          <input type="date" class="form-control" id="inputFechaNacimiento" name="inputFechaNacimiento" value="{{datos.fecha_nacimiento}}">
+        </div>
+        <div class="col">
+        <label for="inputFechaRegistro">Fecha de Registro</label>
+        <input type="date" class="form-control" id="inputFechaRegistro" name="inputFechaRegistro"value="{{datos.fecha_registro}}">
+      </div>
+      </div>
+      <br>
+       
+      <div class="row">
+        <div class="col">
+        <label for="inputTelefono">Telefono</label>
+        <input type="tel" class="form-control" id="inputTelefono" name="inputTelefono" value="{{datos.telefono}}">
+      </div>
+      <div class="col">
+        <label for="inputTipo">Tipo de Empleado</label>
+        <select id="inputTipo" name="inputTipo" class="form-control">
+          <option value="Administrador">Administrador</option>
+          <option value="General">General</option>
 
-        {% for x in datos%}
-        {% if x.estatus_usuario == "Activo" %}
-    
-          <tr>
-            <th scope="row">{{x.id_empleado}}</th>
-            <td>{{x.nombre}}  {{x.apellido_paterno}} {{x.apellido_materno}}</td>
-            <td>{{x.genero}}</td>
-            <td>{{x.fecha_registro}}</td>
-            <td>{{x.telefono}}</td>
-            <td>{{x.tipo}}</td>
-            <td>{{x.estatus_usuario}}</td>
+        </select>
+        </div>
 
-            <td><a href="/enviarEmpleaadoAUpdate/{{x.id_empleado}}"><button type="button" class="btn btn-warning">Modificar</button></a></td>
-            <td><a href="/DelEmpleado/{{x.id_empleado}}"><button type="button" class="btn btn-danger">Eliminar</button></a></td>  
-          </tr>
-          {% endif %}
-        {% endfor %}
-        </tbody>
-      </table>
+      </div>
+      <br>
 
+      <div class="row">
+        <div class="col">
+        <label for="inputUsuario">Nombre de Usuario</label>
+        <input type="text" class="form-control" id="inputUsuario" name="inputUsuario"value="{{datos.usuario}}" >
+      </div>
+      <div class="col">
+        <label for="inputPassword1">Contraseña</label>
+        <input type="password" class="form-control" id="inputPassword1" name="inputPassword1"value="{{datos.passwd}}">
+        </div>
+        <div class="col">
+          <label for="inputPassword2"> Repite Contraseña</label>
+          <input type="password" class="form-control" id="inputPassword2" >
+          </div>
+
+      </div>
+      <br>
+
+      <div class="form-group">
+        <label>Subir foto</label><br>
+        <input type="file" class="inputFoto" id="inputFoto"name="inputFoto" value="{{datos.foto}}">
+      </div>
+
+        <button type="button" class="btn btn-secondary">Verificar</button>
+        <button type="submit" class="btn btn-primary" >Agregar Empleado</button>
+      </form>
       <!--Aquí termina mi código :( -->
     </div>
 
