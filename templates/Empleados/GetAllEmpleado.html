@@ -148,6 +148,44 @@
       <br>
 
       <!-- Aqui inicia mi código :) -->
+      
+      <h3>Empleados</h3>
+
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Genero</th>
+            <th scope="col">Fecha Registro</th>
+            <th scope="col">Telefono</th>
+            <th scope="col">Tipo</th>
+            <th scope="col">Estatus</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+
+        {% for x in datos%}
+
+    
+          <tr>
+            <th scope="row">{{x.id_empleado}}</th>
+            <td>{{x.nombre}}  {{x.apellido_paterno}} {{x.apellido_materno}}</td>
+            <td>{{x.genero}}</td>
+            <td>{{x.fecha_registro}}</td>
+            <td>{{x.telefono}}</td>
+            <td>{{x.tipo}}</td>
+            <td>{{x.estatus_usuario}}</td>
+
+            <td><a href="/"><button type="button" class="btn btn-warning">Modificar</button></a></td>
+            <td><a href="/DelEmpleado/{{x.id_empleado}}"><button type="button" class="btn btn-danger">Eliminar</button></a></td>  
+          </tr>
+
+        {% endfor %}
+        </tbody>
+      </table>
 
       <!--Aquí termina mi código :( -->
     </div>
