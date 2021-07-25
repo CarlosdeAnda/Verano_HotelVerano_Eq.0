@@ -4,7 +4,7 @@ from flask import Flask,render_template,request,redirect,url_for,abort
 from flask_mysqldb import MySQL
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.utils import secure_filename
-from modelo.models import Empleados,Habitaciones,Estacionamiento
+from modelo.models import Empleados,Habitaciones,Estacionamiento,Clientes
 from flask_login import LoginManager, login_user, current_user, logout_user, login_required
 import os
 
@@ -51,7 +51,7 @@ def cerrarSes():
 def ventanaTemplate():
    return render_template('template.html')
 
-#Empieza Empleados
+#Empieza Empleados---------------------------------------------------------------------------------------------------
 
 @app.route('/AddEmpleado')
 def ventanaAddEmpleado():
@@ -124,7 +124,8 @@ def actualizarEmpleadoBD():
     return redirect(url_for('GetAllEmpleado'))
 
 
-#Empieza Habitaciones
+#Empieza Habitaciones---------------------------------------------------------------------------------------------
+
 @app.route('/AddHabitacion')
 def ventanaRegistroHabitacion():
    return render_template('Habitaciones/AddHabitacion.html')
@@ -178,7 +179,8 @@ def actualizarHabitacionDB():
     habitacion.actualizar()
     return redirect(url_for('GetAllHabitacion'))
 
-#Empieza Estacionamiento
+#Empieza Estacionamiento------------------------------------------------------------------------------------------------
+
 @app.route('/AddEstacionamiento')
 def ventanaRegistroEstacionamiento():
    return render_template('Estacionamiento/AddEstacionamiento.html')
@@ -226,6 +228,78 @@ def actualizarEstacionamientoDB():
     print(estacionamiento)
     estacionamiento.actualizar()
     return redirect(url_for('GetAllEstacionamiento'))
+
+
+#Empieza Clientes-------------------------------------------------------------------------------------------------
+
+@app.route('/AddCliente')
+def ventanaAddCliente():
+    return render_template('Clientes/AddCliente.html')
+
+
+@app.route('/ModCliente')
+def ventanaModificarCliente():
+    cliente=Clientes()
+    datos=cliente.consultaGeneral()
+    return render_template('Clientes/GetAllClientes.html',datos=datos)
+   
+
+@app.route('/enviarClienteAUpdate/<int:id>')
+def enviarClienteAUpdate(id):
+    cliente=Clientes()
+    cliente.id_clientes=id
+    datos=cliente.consultaIndividual()
+    return render_template('Clientes/UpdateClientes.html',datos=datos)
+
+
+
+
+@app.route('/deleteCliente/<int:id>')
+def deleteCliente(id):
+
+    cliente=Clientes()
+    cliente.id_clientes=id
+    cliente.consultaIndividual()
+    cliente.estatus_cliente="InActivo"
+    cliente.actualizar()
+    return redirect(url_for('ventanaModificarCliente'))
+   
+@app.route('/enviarClienteDB', methods=['POST'])
+def enviarClienteDB():
+    cliente=Clientes()
+    cliente.nombre=request.form['inputNombre']
+    cliente.apellido_paterno=request.form['inputApellidoPaterno']
+    cliente.apellido_materno=request.form['inputApellidoMaterno']
+    cliente.fecha_registro=request.form['inputFechaRegistro']
+    cliente.telefono=request.form['inputTelefono']
+    cliente.correo=request.form['inputcorreo']
+    cliente.direccion=request.form['inputDireccion']
+    cliente.estatus_cliente="Activo"
+    cliente.insertar()
+    return redirect(url_for('ventanaAddCliente'))
+    
+@app.route('/actualizarClienteDB', methods=['POST'])
+def actualizarClienteDB():
+    cliente=Clientes()
+    cliente.id_clientes=request.form['inputId']
+    cliente.nombre=request.form['inputNombre']
+    cliente.apellido_paterno=request.form['inputApellidoPaterno']
+    cliente.apellido_materno=request.form['inputApellidoMaterno']
+    cliente.fecha_registro=request.form['inputFechaRegistro']
+    cliente.telefono=request.form['inputTelefono']
+    cliente.correo=request.form['inputcorreo']
+    cliente.direccion=request.form['inputDireccion']
+    cliente.estatus_cliente="Activo"
+    cliente.actualizar()
+    return redirect(url_for('ventanaModificarCliente'))
+
+
+
+
+
+
+
+
 
    
 

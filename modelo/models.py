@@ -4,7 +4,9 @@ from sqlalchemy.orm import relationship
 from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
 
-db=SQLAlchemy()                                                                                                                                                                                  
+db=SQLAlchemy()          
+
+#Modelo Empleados-----------------------------------------------------------------------------------------
                                                                                                                                                                                                  
 class Empleados(db.Model):
     __tablename__='Empleados'
@@ -75,6 +77,7 @@ class Empleados(db.Model):
                 return None
 
 
+#Modelos Habitaciones---------------------------------------------------------------------------------------------
 
 class Habitaciones(db.Model):
     __tablename__='Habitaciones'
@@ -104,6 +107,9 @@ class Habitaciones(db.Model):
         habitacion=self.query.get(self.id_habitacion)
         return habitacion
 
+
+#Modelo Estacionamiento-------------------------------------------------------------------------------------------
+
 class Estacionamiento(db.Model):
 
 
@@ -132,3 +138,34 @@ class Estacionamiento(db.Model):
      def consultaIndividual(self):
         estacionamiento=self.query.get(self.id_estacionamiento)
         return estacionamiento
+    
+#Modelo Clientes-----------------------------------------------------------------------------------------------------
+
+class Clientes(db.Model):
+    __tablename__='Clientes'
+    id_clientes=Column(Integer,primary_key=True)
+    nombre=Column(String,nullable=False)
+    apellido_paterno=Column(String,nullable=False)
+    apellido_materno=Column(String,nullable=False)
+    fecha_registro=Column(Date,nullable=False)
+    telefono=Column(String,nullable=False)
+    correo=Column(String,nullable=False)
+    direccion=Column(String,nullable=False)
+    estatus_cliente=Column(String,nullable=False)
+    
+    def insertar(self):                                                                                                                                                                          
+        db.session.add(self)                                                                                                                                                                     
+        db.session.commit()                                                                                                                                                                      
+    def consultaGeneral(self):                                                                                                                                                                   
+        cliente=self.query.all()                                                                                                                                                                   
+        return cliente
+    def actualizar(self):
+        db.session.merge(self)
+        db.session.commit()
+    def eliminar(self):
+        cliente=self.consultaIndividual()
+        db.session.delete(cliente)
+        db.session.commit()
+    def consultaIndividual(self):
+        cliente=self.query.get(self.id_clientes)
+        return cliente
