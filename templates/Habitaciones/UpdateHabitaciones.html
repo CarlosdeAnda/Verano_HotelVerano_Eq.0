@@ -17,11 +17,11 @@
   <div class="wrapper d-flex align-items-stretch">
     <nav id="sidebar">
       <div class="p-4 pt-5">
-        <a href="#" class="img logo rounded-circle mb-5" style="background-image: url(../static/images/logo.jpg);"></a>
+        <a href="/template" class="img logo rounded-circle mb-5" style="background-image: url(../static/uploads/{{current_user.clave}}/{{current_user.foto}});"></a>
         <center>
-          Carlos Esparza de Anda
+          {{current_user.nombre}} {{current_user.apellido_paterno}}
           <br>
-          Empleado General
+          {{current_user.tipo}}
         </center>
 
         <br>

@@ -48,6 +48,7 @@ def cerrarSes():
 
 
 @app.route('/template')
+@login_required
 def ventanaTemplate():
    return render_template('template.html')
 
