@@ -1,3 +1,3 @@
 .pylintrc
 *.pyc
-modelo/__pycache__/models.cpython-39.pyc
+modelo/__pycache__/*
