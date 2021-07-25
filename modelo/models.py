@@ -103,3 +103,32 @@ class Habitaciones(db.Model):
     def consultaIndividual(self):
         habitacion=self.query.get(self.id_habitacion)
         return habitacion
+
+class Estacionamiento(db.Model):
+
+
+     __tablename__='Estacionamiento'
+     id_estacionamiento=Column(Integer,primary_key=True)
+     piso=Column(String,nullable=False)
+     numerolugar=Column(String,nullable=False)
+     disponibilidad=Column(String,nullable=False)
+     estatus=Column(String,nullable=False)
+    
+
+
+     def insertar(self):                                                                                                                                                                          
+        db.session.add(self)                                                                                                                                                                     
+        db.session.commit()                                                                                                                                                                      
+     def consultaGeneral(self):                                                                                                                                                                   
+        estacionamiento=self.query.all()                                                                                                                                                                   
+        return estacionamiento
+     def actualizar(self):
+        db.session.merge(self)
+        db.session.commit()
+     def eliminar(self):
+        estacionamiento=self.consultaIndividual()
+        db.session.delete(estacionamiento)
+        db.session.commit()
+     def consultaIndividual(self):
+        estacionamiento=self.query.get(self.id_estacionamiento)
+        return estacionamiento

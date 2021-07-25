@@ -4,7 +4,7 @@ from flask import Flask,render_template,request,redirect,url_for,abort
 from flask_mysqldb import MySQL
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.utils import secure_filename
-from modelo.models import Empleados,Habitaciones
+from modelo.models import Empleados,Habitaciones,Estacionamiento
 from flask_login import LoginManager, login_user, current_user, logout_user, login_required
 import os
 
@@ -177,6 +177,58 @@ def actualizarHabitacionDB():
     print(habitacion)
     habitacion.actualizar()
     return redirect(url_for('GetAllHabitacion'))
+
+#Empieza Estacionamiento
+@app.route('/AddEstacionamiento')
+def ventanaRegistroEstacionamiento():
+   return render_template('Estacionamiento/AddEstacionamiento.html')
+   
+@app.route('/ModEstacionamiento')
+def GetAllEstacionamiento():
+    estacionamiento=Estacionamiento()
+    datos=estacionamiento.consultaGeneral()
+    return render_template('Estacionamiento/GetAllEstacionamiento.html',datos=datos)
+
+@app.route('/deleteEstacionamiento/<int:id>')
+def deleteEstacionamiento(id):
+    estacionamiento=Estacionamiento()
+    estacionamiento.id_estacionamiento=id
+    estacionamiento.consultaIndividual()
+    estacionamiento.estatus="Inactivo"
+    estacionamiento.actualizar()
+    return redirect(url_for('GetAllEstacionamiento'))
+    
+@app.route('/enviarEstacionamientoAUpdate/<int:id>')
+def enviarEstacionamientoAUpdate(id):
+    estacionamiento=Estacionamiento()
+    estacionamiento.id_estacionamiento=id
+    datos=estacionamiento.consultaIndividual()
+    return render_template('Estacionamiento/UpdateEstacionamiento.html',datos=datos)
+   
+
+
+@app.route('/agregarEstacionamientoDB', methods=['POST'])
+def agregarEstacionamientoDB():
+    estacionamiento=Estacionamiento()
+    estacionamiento.piso=request.form['inputPiso']
+    estacionamiento.numerolugar=request.form['inputLugar']
+    estacionamiento.disponibilidad='Desocupado'
+    estacionamiento.estatus="Activo"
+    estacionamiento.insertar()
+    return redirect(url_for('GetAllEstacionamiento'))
+
+@app.route('/actualizarEstacionamientoDB', methods=['POST'])
+def actualizarEstacionamientoDB():
+    estacionamiento=Estacionamiento()
+    estacionamiento.id_estacionamiento=request.form['idEsta']
+    estacionamiento.piso=request.form['inputPiso']
+    estacionamiento.numerolugar=request.form['inputLugar']
+    print(estacionamiento)
+    estacionamiento.actualizar()
+    return redirect(url_for('GetAllEstacionamiento'))
+
+   
+
 
 
 if __name__ == '__main__':

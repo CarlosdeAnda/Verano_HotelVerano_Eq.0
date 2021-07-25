@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>Hotel Verano</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="../static/css/style.css">
+</head>
+
+<body>
+
+  <div class="wrapper d-flex align-items-stretch">
+    <nav id="sidebar">
+      <div class="p-4 pt-5">
+        <a href="#" class="img logo rounded-circle mb-5" style="background-image: url(../static/images/logo.jpg);"></a>
+        <center>
+          Carlos Esparza de Anda
+          <br>
+          Empleado General
+        </center>
+
+        <br>
+        <ul class="list-unstyled components mb-5">
+          <li>
+            <a href="#Empleados" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Empleados</a>
+            <ul class="collapse list-unstyled" id="Empleados">
+              <li>
+                <a href="/AddEmpleado">Añadir Empleados</a>
+              </li>
+              <li>
+                <a href="/ModEmpleado">Modificar Empleados</a>
+              </li>
+
+            </ul>
+          </li>
+          <li>
+            <a href="#Habitaciones" data-toggle="collapse" aria-expanded="false"
+              class="dropdown-toggle">Habitaciones</a>
+            <ul class="collapse list-unstyled" id="Habitaciones">
+              <li>
+                <a href="/AddHabitacion">Añadir Habitaciones</a>
+              </li>
+              <li>
+                <a href="/ModHabitacion">Modificar Habitaciones</a>
+              </li>
+
+            </ul>
+          </li>
+          <li>
+            <a href="#Estacionamiento" data-toggle="collapse" aria-expanded="false"
+              class="dropdown-toggle">Estacionamiento</a>
+            <ul class="collapse list-unstyled" id="Estacionamiento">
+              <li>
+                <a href="/AddEstacionamiento">Añadir Lugar</a>
+              </li>
+              <li>
+                <a href="/ModEstacionamiento">Modificar Lugar</a>
+              </li>
+
+            </ul>
+          </li>
+          <li>
+            <a href="#pageReservaciones" data-toggle="collapse" aria-expanded="false"
+              class="dropdown-toggle">Reservaciones</a>
+            <ul class="collapse list-unstyled" id="pageReservaciones">
+              <li>
+                <a href="/AddReservacion">Añadir Reservación</a>
+              </li>
+              <li>
+                <a href="/ModReservacion">Modificar Reservación</a>
+              </li>
+
+            </ul>
+          </li>
+          <li>
+            <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Clientes</a>
+            <ul class="collapse list-unstyled" id="pageSubmenu">
+              <li>
+
+              <li>
+                <a href="/AddCliente">Añadir Cliente</a>
+              </li>
+              <li>
+                <a href="/ModCliente">Modificar Ciente</a>
+              </li>
+
+            </ul>
+          </li>
+
+          </li>
+          <li>
+            <a href="/MiPerfil">Mi Perfil</a>
+          </li>
+          <li>
+            <a href="/CerrarSesion">Cerrar Sesión</a>
+          </li>
+        </ul>
+
+        <div class="footer">
+          <p>
+            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+            Toda la página y sus recursos es propiedad de Hotel Verano <i class="icon-heart" aria-hidden="true"></i>
+            </a>
+            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+          </p>
+        </div>
+
+      </div>
+    </nav>
+
+    <!-- Page Content  -->
+    <div id="content" class="p-4 p-md-5">
+
+      <button type="button" id="sidebarCollapse" class="btn btn-primary">
+        <i class="fa fa-bars"></i>
+        <span class="sr-only">Toggle Menu</span>
+      </button>
+      <br>
+      <br>
+      <br>
+
+      <!-- Aqui inicia mi código :) -->
+      
+      <h3>Estacionamiento</h3>
+
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Piso</th>
+            <th scope="col">Lugar</th>
+            <th scope="col">Disponibilidad</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+
+        {% for x in datos%}
+
+        {% if x.estatus == "Activo" %}
+          <tr>
+            <th scope="row">{{x.id_estacionamiento}}</th>
+            <td>{{x.piso}}</td>
+            <td>{{x.numerolugar}}</td>
+            <td>{{x.disponibilidad}}</td>
+            <td><a href="/enviarEstacionamientoAUpdate/{{x.id_estacionamiento}}"><button type="button" class="btn btn-warning">Modificar</button></a></td>
+            <td><a href="/deleteEstacionamiento/{{x.id_estacionamiento}}"><button type="button" class="btn btn-danger">Eliminar</button></a></td>  
+          </tr>
+          {% endif %}
+        {% endfor %}
+        </tbody>
+      </table>
+
+      <!--Aquí termina mi código :( -->
+    </div>
+
+    <script src="../static/js/jquery.min.js"></script>
+    <script src="../static/js/popper.js"></script>
+    <script src="../static/js/bootstrap.min.js"></script>
+    <script src="../static/js/main.js"></script>
+</body>
+
+</html>
