@@ -138,19 +138,21 @@ def GetAllHabitacion():
 
 @app.route('/deleteHabitacion/<int:id>')
 def deleteHabitacion(id):
-
     hab=Habitaciones()
+    hab.id_habitacion=id
+    hab.consultaIndividual()
     hab.estatus="Inactivo"
     hab.actualizar()
     return redirect(url_for('GetAllHabitacion'))
    
 
 
-@app.route('/enviarHabitacionAUpdate')
-def enviarHabitacionAUpdate():
-
-
-    return render_template()
+@app.route('/enviarHabitacionAUpdate/<int:id>')
+def enviarHabitacionAUpdate(id):
+    hab=Habitaciones()
+    hab.id_habitacion=id
+    datos=hab.consultaIndividual()
+    return render_template('Habitaciones/UpdateHabitaciones.html',datos=datos)
    
 
 
@@ -163,6 +165,17 @@ def agregarHabitacionDB():
     habitacion.disponibilidad='Desocupado'
     habitacion.estatus="Activo"
     habitacion.insertar()
+    return redirect(url_for('GetAllHabitacion'))
+
+@app.route('/actualizarHabitacionDB', methods=['POST'])
+def actualizarHabitacionDB():
+    habitacion=Habitaciones()
+    habitacion.id_habitacion=request.form['idhabi']
+    habitacion.piso=request.form['inputPiso']
+    habitacion.numerohabitacion=request.form['inputHabi']
+    habitacion.tipohabitacion=request.form['inputTipo']
+    print(habitacion)
+    habitacion.actualizar()
     return redirect(url_for('GetAllHabitacion'))
 
 
