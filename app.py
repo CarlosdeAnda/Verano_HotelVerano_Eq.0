@@ -51,6 +51,7 @@ def cerrarSes():
 def ventanaTemplate():
    return render_template('template.html')
 
+
 @app.route('/AddEmpleado')
 def ventanaAddEmpleado():
     return render_template('Empleados/AddEmpleado.html')
@@ -61,17 +62,40 @@ def ventanaRegistroHabitacion():
    return render_template('Habitaciones/AddHabitacion.html')
 
 
+@app.route('/ModHabitacion')
+def GetAllHabitacion():
+    hab=Habitaciones()
+    datos=hab.consultaGeneral()
+    return render_template('Habitaciones/GetAllHabitaciones.html',datos=datos)
+
+@app.route('/deleteHabitacion/<int:id>')
+def deleteHabitacion(id):
+
+    hab=Habitaciones()
+    hab.estatus="Inactivo"
+    hab.actualizar()
+    return redirect(url_for('GetAllHabitacion'))
+   
+
+
+@app.route('/enviarHabitacionAUpdate')
+def enviarHabitacionAUpdate():
+
+
+    return render_template()
+   
+
 
 @app.route('/agregarHabitacionDB', methods=['POST'])
 def agregarHabitacionDB():
-
     habitacion=Habitaciones()
     habitacion.piso=request.form['inputPiso']
     habitacion.numerohabitacion=request.form['inputHabi']
     habitacion.tipohabitacion=request.form['inputTipo']
     habitacion.disponibilidad='Desocupado'
+    habitacion.estatus="Activo"
     habitacion.insertar()
-    return redirect(url_for('ventanaRegistroHabitacion'))
+    return redirect(url_for('GetAllHabitacion'))
 
 if __name__ == '__main__':
     app.run(debug = True)

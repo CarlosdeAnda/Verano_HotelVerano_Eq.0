@@ -83,6 +83,7 @@ class Habitaciones(db.Model):
     numerohabitacion=Column(String,nullable=False)
     disponibilidad=Column(String,nullable=False)
     tipohabitacion=Column(String,nullable=False)
+    estatus=Column(String,nullable=False)
     
 
     def insertar(self):                                                                                                                                                                          
