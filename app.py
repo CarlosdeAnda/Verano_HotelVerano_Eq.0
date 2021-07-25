@@ -72,10 +72,19 @@ def agregarEmpleadoBD():
     empleado.tipo=request.form['inputTipo']
     empleado.usuario=request.form['inputUsuario']
     empleado.passwd=request.form['inputPassword1']
-    empleado.foto=request.form['inputFoto']
+    
     empleado.estatus_usuario="Activo"
     Clave= empleado.apellido_paterno[:2]+empleado.apellido_materno[:1]+empleado.nombre[:1]+str(empleado.fecha_nacimiento.split("-")[0][2:])+str(empleado.fecha_nacimiento.split("-")[1])+empleado.fecha_nacimiento.split("-")[2]+random.choice(string.ascii_letters)+str(random.randrange(10))+random.choice(string.ascii_letters)
     empleado.clave=Clave
+
+    foto=request.files['inputFoto']
+    os.mkdir("static/uploads/"+empleado.clave)
+    filename1 = secure_filename(foto.filename)
+    path = os.path.join(app.config['UPLOAD_FOLDER']+empleado.clave, foto.filename)
+    foto.save(path)
+    empleado.foto=filename1
+
+
     empleado.insertar()
     return redirect(url_for('ventanaAddEmpleado'))
 
