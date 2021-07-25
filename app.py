@@ -24,7 +24,7 @@ db = SQLAlchemy(app)
 def load_user(id):
     return Empleados.query.get(int(id))
 
-@app.route('/login')
+@app.route('/')
 def ventanaLogin():
     return render_template('Login.html')
 
