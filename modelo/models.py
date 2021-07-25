@@ -85,6 +85,7 @@ class Habitaciones(db.Model):
     tipohabitacion=Column(String,nullable=False)
     
 
+
     def insertar(self):                                                                                                                                                                          
         db.session.add(self)                                                                                                                                                                     
         db.session.commit()                                                                                                                                                                      

@@ -1,4 +1,4 @@
-import re
+import re,random,string
 from flask import Flask
 from flask import Flask,render_template,request,redirect,url_for,abort
 from flask_mysqldb import MySQL
@@ -51,11 +51,37 @@ def cerrarSes():
 def ventanaTemplate():
    return render_template('template.html')
 
+#Empieza Empleados
 @app.route('/AddEmpleado')
 def ventanaAddEmpleado():
     return render_template('Empleados/AddEmpleado.html')
 
+@app.route('/agregarEmpleadoBD', methods=['POST'])
+def agregarEmpleadoBD():
 
+    empleado=Empleados()
+    empleado.nombre=request.form['inputNombre']
+    empleado.apellido_paterno=request.form['inputApellidoPaterno']
+    empleado.apellido_materno=request.form['inputApellidoMaterno']
+    empleado.genero=request.form['inputGenero']
+    empleado.fecha_nacimiento=request.form['inputFechaNacimiento']
+    empleado.fecha_registro=request.form['inputFechaRegistro']
+    empleado.telefono=request.form['inputTelefono']
+    empleado.tipo=request.form['inputTipo']
+    empleado.usuario=request.form['inputUsuario']
+    empleado.passwd=request.form['inputPassword1']
+    empleado.foto=request.form['inputFoto']
+    empleado.estatus_usuario="Activo"
+    Clave= empleado.apellido_paterno[:2]+empleado.apellido_materno[:1]+empleado.nombre[:1]+str(empleado.fecha_nacimiento.split("-")[0][2:])+str(empleado.fecha_nacimiento.split("-")[1])+empleado.fecha_nacimiento.split("-")[2]+random.choice(string.ascii_letters)+str(random.randrange(10))+random.choice(string.ascii_letters)
+    empleado.clave=Clave
+    empleado.insertar()
+    return redirect(url_for('ventanaAddEmpleado'))
+
+
+
+
+
+#Empieza Habitaciones
 @app.route('/AddHabitacion')
 def ventanaRegistroHabitacion():
    return render_template('Habitaciones/AddHabitacion.html')
@@ -72,6 +98,7 @@ def agregarHabitacionDB():
     habitacion.disponibilidad='Desocupado'
     habitacion.insertar()
     return redirect(url_for('ventanaRegistroHabitacion'))
+
 
 if __name__ == '__main__':
     app.run(debug = True)
