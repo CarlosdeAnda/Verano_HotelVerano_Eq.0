@@ -169,3 +169,34 @@ class Clientes(db.Model):
     def consultaIndividual(self):
         cliente=self.query.get(self.id_clientes)
         return cliente
+    
+#Modelo Reservaciones-----------------------------------------------------------------------------------------------------
+class Reservacion(db.Model):
+    __tablename__='Reservacion'
+    id_reservacion=Column(Integer,primary_key=True)
+    id_clientes=Column(Integer,primary_key=True)
+    nombre=Column(String,nullable=False)
+    apellido_paterno=Column(String,nullable=False)
+    apellido_materno=Column(String,nullable=False)
+    fecha_registro=Column(Date,nullable=False)
+    telefono=Column(String,nullable=False)
+    correo=Column(String,nullable=False)
+    direccion=Column(String,nullable=False)
+    estatus_cliente=Column(String,nullable=False)
+    
+    def insertar(self):                                                                                                                                                                          
+        db.session.add(self)                                                                                                                                                                     
+        db.session.commit()                                                                                                                                                                      
+    def consultaGeneral(self):                                                                                                                                                                   
+        reservacion=self.query.all()                                                                                                                                                                   
+        return reservacion
+    def actualizar(self):
+        db.session.merge(self)
+        db.session.commit()
+    def eliminar(self):
+        reservacion=self.consultaIndividual()
+        db.session.delete(reservacion)
+        db.session.commit()
+    def consultaIndividual(self):
+        reservacion=self.query.get(self.id_reservacion)
+        return reservacion
