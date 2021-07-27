@@ -55,5 +55,5 @@ CREATE TABLE IF NOT EXISTS Habitaciones(
 
 
 insert into Empleados values(1,"Elon","Musk","River","Masculino","1998-01-13","2021-07-23","3512800928","admin","admin","Administrador","Activo","MOGU130198","elon.jpg");
-CREATE USER IF NOT EXISTS 'admin'@'database-1.cwgfqihazsc6.us-west-2.rds.amazonaws.com' IDENTIFIED BY 'admin';
+CREATE USER IF NOT EXISTS 'admin'@'database-1.cwgfqihazsc6.us-west-2.rds.amazonaws.com/' IDENTIFIED BY 'admin';
 GRANT ALL PRIVILEGES ON Hotel.* TO 'admin'@'database-1.cwgfqihazsc6.us-west-2.rds.amazonaws.com';
