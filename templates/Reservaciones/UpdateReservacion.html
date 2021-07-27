@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>Hotel Verano</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="../static/css/style.css">
+</head>
+
+<body>
+
+  <div class="wrapper d-flex align-items-stretch">
+    <nav id="sidebar">
+      <div class="p-4 pt-5">
+        <a href="/template" class="img logo rounded-circle mb-5" style="background-image: url(../static/uploads/{{current_user.clave}}/{{current_user.foto}});"></a>
+        <center>
+          {{current_user.nombre}} {{current_user.apellido_paterno}}
+          <br>
+          {{current_user.tipo}}
+        </center>
+
+        <br>
+        <ul class="list-unstyled components mb-5">
+          <li>
+            <a href="#Empleados" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Empleados</a>
+            <ul class="collapse list-unstyled" id="Empleados">
+              <li>
+                <a href="/AddEmpleado">Añadir Empleados</a>
+              </li>
+              <li>
+                <a href="/ModEmpleado">Modificar Empleados</a>
+              </li>
+
+            </ul>
+          </li>
+          <li>
+            <a href="#Habitaciones" data-toggle="collapse" aria-expanded="false"
+              class="dropdown-toggle">Habitaciones</a>
+            <ul class="collapse list-unstyled" id="Habitaciones">
+              <li>
+                <a href="/AddHabitacion">Añadir Habitaciones</a>
+              </li>
+              <li>
+                <a href="/ModHabitacion">Modificar Habitaciones</a>
+              </li>
+
+            </ul>
+          </li>
+          <li>
+            <a href="#Estacionamiento" data-toggle="collapse" aria-expanded="false"
+              class="dropdown-toggle">Estacionamiento</a>
+            <ul class="collapse list-unstyled" id="Estacionamiento">
+              <li>
+                <a href="/AddEstacionamiento">Añadir Lugar</a>
+              </li>
+              <li>
+                <a href="/ModEstacionamiento">Modificar Lugar</a>
+              </li>
+
+            </ul>
+          </li>
+          <li>
+            <a href="#pageReservaciones" data-toggle="collapse" aria-expanded="false"
+              class="dropdown-toggle">Reservaciones</a>
+            <ul class="collapse list-unstyled" id="pageReservaciones">
+              <li>
+                <a href="/AddReservacion">Añadir Reservación</a>
+              </li>
+              <li>
+                <a href="/ModReservacion">Modificar Reservación</a>
+              </li>
+
+            </ul>
+          </li>
+          <li>
+            <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Clientes</a>
+            <ul class="collapse list-unstyled" id="pageSubmenu">
+              <li>
+
+              <li>
+                <a href="/AddCliente">Añadir Cliente</a>
+              </li>
+              <li>
+                <a href="/ModCliente">Modificar Ciente</a>
+              </li>
+
+            </ul>
+          </li>
+
+          </li>
+          <li>
+            <a href="/MiPerfil">Mi Perfil</a>
+          </li>
+          <li>
+            <a href="/CerrarSesion">Cerrar Sesión</a>
+          </li>
+        </ul>
+
+        <div class="footer">
+          <p>
+            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+            Toda la página y sus recursos es propiedad de Hotel Verano <i class="icon-heart" aria-hidden="true"></i>
+            </a>
+            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+          </p>
+        </div>
+
+      </div>
+    </nav>
+
+    <!-- Page Content  -->
+    <div id="content" class="p-4 p-md-5">
+
+      <button type="button" id="sidebarCollapse" class="btn btn-primary">
+        <i class="fa fa-bars"></i>
+        <span class="sr-only">Toggle Menu</span>
+      </button>
+      <br>
+      <br>
+      <br>
+
+      <!-- Aqui inicia mi código :) -->
+      <h3>Modificar Reservación <span class="badge badge-secondary">Nuevo</span></h3>
+      <form method="POST" action="/agregarEmpleadoBD" enctype="multipart/form-data">
+        <div class="row">
+
+                
+      
+        <div class="col">
+        <label for="inputEmpleado">Empleado</label>
+        <select id="inputEmpleado" name="inputEmpleado" class="form-control" >
+          <option selected value="{{current_user.id_empleado}}">{{current_user.nombre}} </option>
+        </select>
+        </div>
+      </div>
+      <br>
+      
+
+      <div class="row">
+        <div class="col">
+        <label for="inputCliente">Clientes Disponibles</label>
+        <select id="inputCliente" name="inputCliente" class="form-control" >
+          {% for x in datosCli %}
+          {% if x.estatus_cliente == "Activo" %}
+          <option value="{{x.id_cliente}}">{{x.nombre}}</option>
+          {% endif %}
+          {% endfor %}
+          
+        </select>
+        </div>
+      </div>
+      
+  
+          <br>
+          <div class="row">
+            <div class="col">
+            <label for="inputDisponibles">Habitaciones Disponibles</label>
+            <select id="inputDisponibles" name="inputDisponibles" class="form-control" >
+              {% for x in datosHab %}
+              {% if x.disponibilidad == "Desocupado" %}
+              <option value="{{x.id_habitacion}}">{{x.piso}}-{{x.numerohabitacion}} : {{x.tipohabitacion}}</option>
+              {% endif %}
+              {% endfor %}
+            </select>
+            </div>
+          </div>
+          <br>
+
+        <div class="row">
+          <div class="col">
+          <label for="inputFechaIngreso">Fecha de Ingreso</label>
+          <input type="date" class="form-control" id="inputFechaIngreso" name="inputFechaIngreso">
+        </div>
+
+        <div class="col">
+        <label for="inputFechaSalida">Fecha de Salida</label>
+        <input type="date" class="form-control" id="inputFechaSalida" name="inputFechaSalida">
+      </div>
+      </div>
+      <br>
+
+ 
+      <div class="row">
+        <div class="col">
+        <label for="inputLugar">Lugares Estacionamiento Disponibles</label>
+        <select id="inputLugar" name="inputLugar" class="form-control" >
+          <option value="">No requiere estacionamiento</option>
+          {% for x in datosEst %}
+          {% if x.disponibilidad == "Desocupado" %}
+          <option value="{{x.id_habitacion}}">{{x.piso}}-{{x.numerolugar}}</option>
+          {% endif %}
+          {% endfor %}
+        </select>
+        </div>
+      </div>
+      <br>
+
+        <button type="button" class="btn btn-secondary">Verificar</button>
+        <button type="submit" class="btn btn-primary" >Modificar Reservación</button>
+      </form>
+      <!--Aquí termina mi código :( -->
+    </div>
+
+    <script src="../static/js/jquery.min.js"></script>
+    <script src="../static/js/popper.js"></script>
+    <script src="../static/js/bootstrap.min.js"></script>
+    <script src="../static/js/main.js"></script>
+</body>
+
+</html>
