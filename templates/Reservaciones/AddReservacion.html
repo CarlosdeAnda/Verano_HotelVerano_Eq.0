@@ -132,8 +132,8 @@
                 
       
         <div class="col">
-        <label for="inputGenero">Empleado</label>
-        <select id="inputGenero" name="inputGenero" class="form-control" >
+        <label for="inputEmpleado">Empleado</label>
+        <select id="inputEmpleado" name="inputEmpleado" class="form-control" >
           <option selected value="{{current_user.id_empleado}}">{{current_user.nombre}} </option>
         </select>
         </div>
@@ -146,30 +146,26 @@
         <label for="inputCliente">Clientes Disponibles</label>
         <select id="inputCliente" name="inputCliente" class="form-control" >
           {% for x in datosCli %}
+          {% if x.estatus_cliente == "Activo" %}
           <option value="{{x.id_cliente}}">{{x.nombre}}</option>
+          {% endif %}
           {% endfor %}
           
         </select>
         </div>
       </div>
-      <br>
-          <div class="row">
-            <div class="col">
-            <label for="inputTipo">Tipo de Habitación</label>
-            <select id="inputTipo" name="inputTipo" class="form-control" >
-              <option selected>Selecciona...</option>
-              <option value="Chica">Chica</option>
-              <option value="Mediana">Mediana</option>
-              <option value="Grande">Grande</option>
-            </select>
-            </div>
-          </div>
+      
+  
           <br>
           <div class="row">
             <div class="col">
             <label for="inputDisponibles">Habitaciones Disponibles</label>
             <select id="inputDisponibles" name="inputDisponibles" class="form-control" >
-              <option selected>Selecciona...</option>
+              {% for x in datosHab %}
+              {% if x.disponibilidad == "Desocupado" %}
+              <option value="{{x.id_habitacion}}">{{x.piso}}-{{x.numerohabitacion}} : {{x.tipohabitacion}}</option>
+              {% endif %}
+              {% endfor %}
             </select>
             </div>
           </div>
@@ -188,30 +184,24 @@
       </div>
       <br>
 
-      <div class="row">
-        <div class="col">
-        <label for="inputEstacionamiento">Requiere Estacionamiento?</label>
-        <select id="inputEstacionamiento" name="inputEstacionamiento" class="form-control" >
-          <option selected>Selecciona...</option>
-          <option value="True">Si</option>
-          <option value="False">No</option>
-        </select>
-        </div>
-      </div>
-      <br>
  
       <div class="row">
         <div class="col">
         <label for="inputLugar">Lugares Estacionamiento Disponibles</label>
         <select id="inputLugar" name="inputLugar" class="form-control" >
-          <option selected>Selecciona...</option>
+          <option value="">No requiere estacionamiento</option>
+          {% for x in datosEst %}
+          {% if x.disponibilidad == "Desocupado" %}
+          <option value="{{x.id_habitacion}}">{{x.piso}}-{{x.numerolugar}}</option>
+          {% endif %}
+          {% endfor %}
         </select>
         </div>
       </div>
       <br>
 
         <button type="button" class="btn btn-secondary">Verificar</button>
-        <button type="submit" class="btn btn-primary" >Agregar Empleado</button>
+        <button type="submit" class="btn btn-primary" >Agregar Reservación</button>
       </form>
       <!--Aquí termina mi código :( -->
     </div>

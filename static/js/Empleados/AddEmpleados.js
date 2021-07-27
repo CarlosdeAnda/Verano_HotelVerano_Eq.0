@@ -124,7 +124,7 @@ function validarTelefono(valor){
 }   
 
 function validarCorreo(valor){                                
-    var regex = /^\w[a-zA-Z.-_$,]+@\w[a-zA-Z]+\.\w[a-zA-Z]+\.?\w+/                                                     
+    var regex = /^\w[a-zA-Z\s]*$/                                                     
     var response = regex.test(valor)                                            
     return response;                                                                        
 }   

@@ -10,7 +10,7 @@ import os
 
 app = Flask(__name__)
 app.secret_key = "s3cr3t"
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://admin:password@database-1.cwgfqihazsc6.us-west-2.rds.amazonaws.com/Hotel'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://admin:password@database-4.cwgfqihazsc6.us-west-2.rds.amazonaws.com/Hotel'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_POOL_SIZE'] = 100
 app.config['UPLOAD_FOLDER'] = "static/uploads/"
@@ -270,7 +270,7 @@ def deleteCliente(id):
     cliente=Clientes()
     cliente.id_clientes=id
     cliente.consultaIndividual()
-    cliente.estatus_cliente="InActivo"
+    cliente.estatus_cliente="Inactivo"
     cliente.actualizar()
     return redirect(url_for('ventanaModificarCliente'))
    
@@ -317,6 +317,32 @@ def ventanaAddReservacion():
     
     
 
+@app.route('/ModReservacion')
+def ventanaModificarReservacion():
+    reservacion=Reservacion()
+    datos=reservacion.consultaGeneral()
+    return render_template('Reservaciones/GetAllReservacion.html',datos=datos)
+   
+
+@app.route('/enviarReservacionAUpdate/<int:id>')
+def enviarReservacionAUpdate(id):
+    reservacion=Reservacion()
+    reservacion.id_reservacion=id
+    datos=reservacion.consultaIndividual()
+    return render_template('Reservaciones/UpdateReservacion.html',datos=datos)
+
+
+
+@app.route('/deleteReservacion/<int:id>')
+def deleteReservacion(id):
+
+    reservacion=Reservacion()
+    reservacion.id_reservacion=id
+    reservacion.consultaIndividual()
+    reservacion.estatus="Inactivo"
+    reservacion.actualizar()
+    return redirect(url_for('ventanaModificarReservacion'))
+   
 
 
 
