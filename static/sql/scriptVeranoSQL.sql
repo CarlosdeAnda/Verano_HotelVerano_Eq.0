@@ -53,6 +53,25 @@ CREATE TABLE IF NOT EXISTS Habitaciones(
     primary key (id_habitacion)
 );
 
+CREATE TABLE IF NOT EXISTS Reservacion(
+	id_reservacion int not null auto_increment,
+    id_clientes int not null,
+    id_empleado int not null,
+    id_habitacion int not null,
+    id_estacionamiento int,
+    fecha_ingreso date not null,
+	fecha_salida date, 
+    fecha_reservacion date not null,
+    estacionamiento bool not null,
+    primary key(id_reservacion),
+    foreign key(id_clientes) references Clientes(id_clientes),
+    foreign key(id_empleado) references Empleados(id_empleado),
+    foreign key(id_habitacion) references Habitaciones(id_habitacion),
+    foreign key(id_estacionamiento) references Estacionamiento(id_estacionamiento)
+);
+
+
+select * from Empleados;
 
 insert into Empleados values(1,"Elon","Musk","River","Masculino","1998-01-13","2021-07-23","3512800928","admin","admin","Administrador","Activo","MOGU130198","elon.jpg");
 CREATE USER IF NOT EXISTS 'admin'@'database-1.cwgfqihazsc6.us-west-2.rds.amazonaws.com' IDENTIFIED BY 'admin';

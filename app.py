@@ -303,7 +303,19 @@ def actualizarClienteDB():
     cliente.actualizar()
     return redirect(url_for('ventanaModificarCliente'))
 
+#Empieza reservaciones
 
+@app.route('/AddReservacion')
+def ventanaAddReservacion():
+    cliente=Clientes()
+    habitacion=Habitaciones()
+    estacionamiento=Estacionamiento()
+    datosCli=cliente.consultaGeneral()
+    datosHab=habitacion.consultaGeneral()
+    datosEst=estacionamiento.consultaGeneral()
+    return render_template('Reservaciones/AddReservacion.html',datosCli=datosCli,datosHab=datosHab,datosEst=datosEst)
+    
+    
 
 
 
