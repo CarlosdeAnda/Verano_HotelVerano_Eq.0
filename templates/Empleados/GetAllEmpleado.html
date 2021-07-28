@@ -29,51 +29,68 @@
           <br>
         </center>
         <ul class="list-unstyled components mb-5">
+          {% if current_user.is_authenticated and current_user.tipo=="Administrador" or current_user.tipo=="Viewer" %}
           <li>
             <a href="#Empleados" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Empleados</a>
+            
             <ul class="collapse list-unstyled" id="Empleados">
+              {% if current_user.is_authenticated and current_user.tipo=="Administrador"  %}
               <li>
                 <a href="/AddEmpleado">Añadir Empleados</a>
               </li>
+              {%endif%}
               <li>
                 <a href="/ModEmpleado">Modificar Empleados</a>
               </li>
-
+              
             </ul>
+            {% endif %}
+
           </li>
+          {% if current_user.is_authenticated and current_user.tipo=="Administrador" or current_user.tipo=="Viewer" %}
           <li>
             <a href="#Habitaciones" data-toggle="collapse" aria-expanded="false"
               class="dropdown-toggle">Habitaciones</a>
             <ul class="collapse list-unstyled" id="Habitaciones">
+              {% if current_user.is_authenticated and current_user.tipo=="Administrador"  %}
               <li>
                 <a href="/AddHabitacion">Añadir Habitaciones</a>
               </li>
+              {%endif%}
               <li>
                 <a href="/ModHabitacion">Modificar Habitaciones</a>
               </li>
 
             </ul>
           </li>
+          {%endif%}
+          {% if current_user.is_authenticated and current_user.tipo=="Administrador" or current_user.tipo=="Viewer" %}
           <li>
             <a href="#Estacionamiento" data-toggle="collapse" aria-expanded="false"
               class="dropdown-toggle">Estacionamiento</a>
             <ul class="collapse list-unstyled" id="Estacionamiento">
+              {% if current_user.is_authenticated and current_user.tipo=="Administrador"  %}
               <li>
                 <a href="/AddEstacionamiento">Añadir Lugar</a>
               </li>
+              {%endif%}
               <li>
                 <a href="/ModEstacionamiento">Modificar Lugar</a>
               </li>
 
             </ul>
           </li>
+          {%endif%}
           <li>
+            
             <a href="#pageReservaciones" data-toggle="collapse" aria-expanded="false"
               class="dropdown-toggle">Reservaciones</a>
             <ul class="collapse list-unstyled" id="pageReservaciones">
+              {% if current_user.is_authenticated and current_user.tipo=="General" or current_user.tipo=="Administrador"%}
               <li>
                 <a href="/AddReservacion">Añadir Reservación</a>
               </li>
+              {%endif%}
               <li>
                 <a href="/ModReservacion">Modificar Reservación</a>
               </li>
@@ -84,10 +101,11 @@
             <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Clientes</a>
             <ul class="collapse list-unstyled" id="pageSubmenu">
               <li>
-
+              {% if current_user.is_authenticated and current_user.tipo=="General" or current_user.tipo=="Administrador"%}
               <li>
                 <a href="/AddCliente">Añadir Cliente</a>
               </li>
+              {% endif %}
               <li>
                 <a href="/ModCliente">Modificar Ciente</a>
               </li>
@@ -158,9 +176,10 @@
             <td>{{x.telefono}}</td>
             <td>{{x.tipo}}</td>
             <td>{{x.estatus_usuario}}</td>
-
+            {% if current_user.is_authenticated and current_user.tipo=="Administrador" %}
             <td><a href="/enviarEmpleaadoAUpdate/{{x.id_empleado}}"><button type="button" class="btn btn-warning">Modificar</button></a></td>
             <td><a href="/DelEmpleado/{{x.id_empleado}}"><button type="button" class="btn btn-danger">Eliminar</button></a></td>  
+            {% endif %}
           </tr>
           {% endif %}
         {% endfor %}

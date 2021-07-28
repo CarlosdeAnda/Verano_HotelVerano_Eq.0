@@ -62,25 +62,12 @@ function comprobar(){
     }
 
 
-    if(!validarString(formDatos[0])){
-        mensaje = mensaje + "El nombre debe ser solo letras. \n\n"
-        aux =false;
-    }
 
     if(!validarTelefono(formDatos[6])){
         mensaje = mensaje + "El telefono es incorrecto. \n\n"
         aux =false;
     }
 
-    if(!validarString(formDatos[1])){
-        mensaje = mensaje + "El apellido paterno debe ser solo letras. \n\n"
-        aux =false;
-    }
-
-    if(!validarString(formDatos[2])){
-        mensaje = mensaje + "El apellido materno debe ser solo letras \n\n"
-        aux =false;
-    }
 
     if(!logitudUsuario(formDatos[8])){
         mensaje = mensaje + "El usuario debe tener una longitud de 8 caracteres. \n\n"
@@ -104,11 +91,6 @@ function comprobar(){
 
 }
 
-function validarString(valor){
-    var regex= /^\w[a-zA-Z]+\s?\w[a-zA-Z]+\s?\w[a-zA-Z]+$/
-    var response = regex.test(valor)                                                           
-    return response;            
-}
 
 
 function validarDigito(valor){                  

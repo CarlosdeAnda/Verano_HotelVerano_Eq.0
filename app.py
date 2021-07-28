@@ -10,7 +10,7 @@ import os
 
 app = Flask(__name__)
 app.secret_key = "s3cr3t"
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:admin@localhost/Hotel'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://admin:admin@localhost/Hotel'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_POOL_SIZE'] = 100
 app.config['UPLOAD_FOLDER'] = "static/uploads/"
@@ -55,6 +55,7 @@ def ventanaTemplate():
 #Empieza Empleados---------------------------------------------------------------------------------------------------
 
 @app.route('/AddEmpleado')
+@login_required
 def ventanaAddEmpleado():
     return render_template('Empleados/AddEmpleado.html')
 
@@ -89,6 +90,7 @@ def agregarEmpleadoBD():
     return redirect(url_for('ventanaAddEmpleado'))
 
 @app.route('/ModEmpleado')
+@login_required
 def GetAllEmpleado():
     Empleado=Empleados()
     datos=Empleado.consultaGeneral()
@@ -104,6 +106,7 @@ def DelEmpleado(id):
     return redirect(url_for('GetAllEmpleado'))
 
 @app.route('/enviarEmpleaadoAUpdate/<int:id>')
+@login_required
 def enviarEmpleaadoAUpdate(id):
     Empleado=Empleados()
     Empleado.id_empleado=id
@@ -137,11 +140,13 @@ def actualizarEmpleadoBD():
 #Empieza Habitaciones---------------------------------------------------------------------------------------------
 
 @app.route('/AddHabitacion')
+@login_required
 def ventanaRegistroHabitacion():
    return render_template('Habitaciones/AddHabitacion.html')
 
 
 @app.route('/ModHabitacion')
+@login_required
 def GetAllHabitacion():
     hab=Habitaciones()
     datos=hab.consultaGeneral()
@@ -159,6 +164,7 @@ def deleteHabitacion(id):
 
 
 @app.route('/enviarHabitacionAUpdate/<int:id>')
+@login_required
 def enviarHabitacionAUpdate(id):
     hab=Habitaciones()
     hab.id_habitacion=id
@@ -192,10 +198,12 @@ def actualizarHabitacionDB():
 #Empieza Estacionamiento------------------------------------------------------------------------------------------------
 
 @app.route('/AddEstacionamiento')
+@login_required
 def ventanaRegistroEstacionamiento():
    return render_template('Estacionamiento/AddEstacionamiento.html')
    
 @app.route('/ModEstacionamiento')
+@login_required
 def GetAllEstacionamiento():
     estacionamiento=Estacionamiento()
     datos=estacionamiento.consultaGeneral()
@@ -211,6 +219,7 @@ def deleteEstacionamiento(id):
     return redirect(url_for('GetAllEstacionamiento'))
     
 @app.route('/enviarEstacionamientoAUpdate/<int:id>')
+@login_required
 def enviarEstacionamientoAUpdate(id):
     estacionamiento=Estacionamiento()
     estacionamiento.id_estacionamiento=id
@@ -243,11 +252,13 @@ def actualizarEstacionamientoDB():
 #Empieza Clientes-------------------------------------------------------------------------------------------------
 
 @app.route('/AddCliente')
+@login_required
 def ventanaAddCliente():
     return render_template('Clientes/AddCliente.html')
 
 
 @app.route('/ModCliente')
+@login_required
 def ventanaModificarCliente():
     cliente=Clientes()
     datos=cliente.consultaGeneral()
@@ -255,6 +266,7 @@ def ventanaModificarCliente():
    
 
 @app.route('/enviarClienteAUpdate/<int:id>')
+@login_required
 def enviarClienteAUpdate(id):
     cliente=Clientes()
     cliente.id_clientes=id
@@ -306,6 +318,7 @@ def actualizarClienteDB():
 #Empieza reservaciones
 
 @app.route('/AddReservacion')
+@login_required
 def ventanaAddReservacion():
     cliente=Clientes()
     habitacion=Habitaciones()
@@ -318,6 +331,7 @@ def ventanaAddReservacion():
     
 
 @app.route('/ModReservacion')
+@login_required
 def ventanaModificarReservacion():
     reservacion=Reservacion()
     datos=reservacion.consultaGeneral()
@@ -325,6 +339,7 @@ def ventanaModificarReservacion():
    
 
 @app.route('/enviarReservacionAUpdate/<int:id>')
+@login_required
 def enviarReservacionAUpdate(id):
     reservacion=Reservacion()
     reservacion.id_reservacion=id
@@ -347,6 +362,7 @@ def deleteReservacion(id):
 
 #Empieza MiPerfil
 @app.route('/MiPerfil')
+@login_required
 def ventanamiPerfil():
     return render_template('MiPerfil/MiPerfil.html')
 
