@@ -10,7 +10,7 @@ import os
 
 app = Flask(__name__)
 app.secret_key = "s3cr3t"
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://admin:admin@localhost/Hotel'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:admin@localhost/Hotel'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_POOL_SIZE'] = 100
 app.config['UPLOAD_FOLDER'] = "static/uploads/"
