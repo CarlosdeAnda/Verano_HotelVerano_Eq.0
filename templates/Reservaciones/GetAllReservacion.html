@@ -153,10 +153,13 @@
         <thead class="thead-dark">
           <tr>
             <th scope="col"># Reservación</th>
-            <th scope="col"># Cliente</th>
+            <th scope="col">ID Cliente</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Habitacion</th>
+            <th scope="col">Tipo de Habitación</th>
             <th scope="col">Fecha Ingreso</th>
             <th scope="col">Fecha Reservación</th>
-
+            
             <th scope="col"></th>
             <th scope="col"></th>
           </tr>
@@ -165,10 +168,13 @@
 
         {% for x in datos%}
         {% if x.estatus == "Activo" %}
-    
+
           <tr>
             <th scope="row">{{x.id_reservacion}}</th>
-            <td>{{x.id_cliente}} </td>
+            <td>{{x.id_clientes}}</td>
+            <td>{{x.clires.nombre}} {{x.clires.apellido_paterno}} {{x.clires.apellido_materno}} </td>
+            <td>{{x.habres.piso}}-{{x.habres.numerohabitacion}}</td>
+            <td>{{x.habres.tipohabitacion}}</td>
             <td>{{x.fecha_ingreso}}</td>
             <td>{{x.fecha_reservacion}}</td>
             {% if current_user.is_authenticated and current_user.tipo=="Administrador" %}

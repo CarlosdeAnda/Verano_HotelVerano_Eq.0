@@ -147,7 +147,7 @@
 
       <!-- Aqui inicia mi código :) -->
       <h3>Añadir Reservación <span class="badge badge-secondary">Nuevo</span></h3>
-      <form method="POST" action="/agregarEmpleadoBD" enctype="multipart/form-data">
+      <form method="POST" action="/addReservacionDB">
         <div class="row">
 
                 
@@ -155,7 +155,7 @@
         <div class="col">
         <label for="inputEmpleado">Empleado</label>
         <select id="inputEmpleado" name="inputEmpleado" class="form-control" >
-          <option selected value="{{current_user.id_empleado}}">{{current_user.nombre}} </option>
+          <option selected value="{{current_user.id_empleado}}">{{current_user.nombre}} {{current_user.apellido_paterno}} {{current_user.apellido_materno}} </option>
         </select>
         </div>
       </div>
@@ -166,9 +166,10 @@
         <div class="col">
         <label for="inputCliente">Clientes Disponibles</label>
         <select id="inputCliente" name="inputCliente" class="form-control" >
+          
           {% for x in datosCli %}
           {% if x.estatus_cliente == "Activo" %}
-          <option value="{{x.id_cliente}}">{{x.nombre}}</option>
+          <option value="{{x.id_clientes}}">{{x.nombre}} {{x.apellido_paterno}} {{x.apellido_materno}}</option>
           {% endif %}
           {% endfor %}
           

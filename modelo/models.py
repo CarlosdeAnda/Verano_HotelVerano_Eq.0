@@ -24,6 +24,7 @@ class Empleados(db.Model):
     estatus_usuario=Column(String,nullable=False)
     clave=Column(String,nullable=False)
     foto=Column(String,nullable=False)
+    empleado=relationship('Reservacion',backref='empres')
     
     def insertar(self):                                                                                                                                                                          
         db.session.add(self)                                                                                                                                                                     
@@ -87,7 +88,7 @@ class Habitaciones(db.Model):
     disponibilidad=Column(String,nullable=False)
     tipohabitacion=Column(String,nullable=False)
     estatus=Column(String,nullable=False)
-    
+    hab=relationship('Reservacion',backref='habres')
 
 
     def insertar(self):                                                                                                                                                                          
@@ -119,6 +120,8 @@ class Estacionamiento(db.Model):
      numerolugar=Column(String,nullable=False)
      disponibilidad=Column(String,nullable=False)
      estatus=Column(String,nullable=False)
+     
+     
     
 
 
@@ -152,6 +155,7 @@ class Clientes(db.Model):
     correo=Column(String,nullable=False)
     direccion=Column(String,nullable=False)
     estatus_cliente=Column(String,nullable=False)
+    cli=relationship('Reservacion',backref='clires')
     
     def insertar(self):                                                                                                                                                                          
         db.session.add(self)                                                                                                                                                                     
@@ -174,15 +178,14 @@ class Clientes(db.Model):
 class Reservacion(db.Model):
     __tablename__='Reservacion'
     id_reservacion=Column(Integer,primary_key=True)
-    id_clientes=Column(Integer,primary_key=True)
-    nombre=Column(String,nullable=False)
-    apellido_paterno=Column(String,nullable=False)
-    apellido_materno=Column(String,nullable=False)
-    fecha_registro=Column(Date,nullable=False)
-    telefono=Column(String,nullable=False)
-    correo=Column(String,nullable=False)
-    direccion=Column(String,nullable=False)
-    estatus_cliente=Column(String,nullable=False)
+    id_clientes=Column(Integer,ForeignKey('Clientes.id_clientes'))
+    id_empleado=Column(Integer,ForeignKey('Empleados.id_empleado'))
+    id_habitacion=Column(Integer,ForeignKey('Habitaciones.id_habitacion'))
+    fecha_ingreso=Column(Date,nullable=False)
+    fecha_reservacion =Column(Date,nullable=False)
+    lugar_estacionamiento =Column(String,nullable=False)
+    estatus=Column(String,nullable=False)
+    fecha_salida=Column(Date,nullable=False)
     
     def insertar(self):                                                                                                                                                                          
         db.session.add(self)                                                                                                                                                                     
