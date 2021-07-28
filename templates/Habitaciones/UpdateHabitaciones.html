@@ -159,6 +159,7 @@
         <div class="form-group row">
           <label>Numero de piso</label>
           <select id="inputPiso" name="inputPiso" class="form-control">
+            <option selected value="{{datos.piso}}">{{datos.piso}}</option>
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -175,6 +176,7 @@
         <div class="form-group row">
           <label>Numero de habitación</label>
           <select id="inputHabi" name="inputHabi" class="form-control">
+            <option selected value="{{datos.numerohabitacion}}">{{datos.numerohabitacion}}</option>
             <option value="A">A</option>
             <option value="B">B</option>
             <option value="C">C</option>
@@ -192,6 +194,7 @@
         <div class="form-group row">
           <label>Tipo de habitacion</label>
           <select id="inputTipo" name="inputTipo" class="form-control">
+            <option selected value="{{datos.tipohabitacion}}">{{datos.tipohabitacion}}</option>
             <option value="Chica">Chica</option>
             <option value="Mediana">Mediana</option>
             <option value="Grande">Grande</option>
