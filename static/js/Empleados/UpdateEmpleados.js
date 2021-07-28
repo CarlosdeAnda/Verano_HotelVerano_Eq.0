@@ -1,34 +1,3 @@
-var extValidas = [".jpg", ".jpeg",".png"];                                                                                                                                 
-
-
-function ValidarArchivo(oninput) { //Verifica las extenciones de lo archivos.                                                                                                                                                      
-    if (oninput.type == "file") {  // S                                                                                                                                                           
-        var nombre = oninput.value;                                                                                                                                   
-         if (nombre.length > 0) {                                                                                                                                                              
-            var bandera = false;                                                                                                                                               
-            for (var j = 0; j < extValidas.length; j++) {                                                                                                                  
-                var sCurExtension = extValidas[j];                              
-                if (nombre.substr(nombre.length - sCurExtension.length, sCurExtension.length).toLowerCase() == sCurExtension.toLowerCase()) {                                         
-                    bandera = true;                            
-                    break;                                                                                                                                                                      
-                }                                                                                                                                                                                 
-            }                                                                  
-                                                                        
-            if (!bandera) {    
-                var modal = $('#errorfileModal')
-                modal.find('.modal-title').text("Error")
-                modal.find('.modal-body').text("Solo se permiten archivos con extenciones: jpg,png,jpeg.")
-                modal.modal('show')                                                                                                                                     
-                oninput.value = "";                                             
-                return false;                                   
-            }                                                                  
-        }                                                                           
-    }                                                                               
-    return true;                                                        
-}   
-
-
-
 function comprobar(){
     
     formDatos = {};
@@ -45,7 +14,7 @@ function comprobar(){
     formDatos[8] = document.getElementById('inputUsuario').value
     formDatos[9] = document.getElementById('inputPassword1').value
     formDatos[10] = document.getElementById('inputPassword2').value
-    formDatos[11] = document.getElementById('inputFoto').value
+    
 
     for (const key in formDatos) { //Recorre todo los campos del formulario.
 
@@ -62,10 +31,6 @@ function comprobar(){
     }
 
 
-    if(!ValidarString(formDatos[0])){
-        mensaje = mensaje + "El nombre tiene un formato incorrecto. \n\n"
-        aux =false;
-    }
 
     if(!ValidarString(formDatos[1])){
         mensaje = mensaje + "El apellido paterno tiene un formato incorrecto. \n\n"
