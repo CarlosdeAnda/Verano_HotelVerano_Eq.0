@@ -159,7 +159,9 @@
         <div class="form-group row">
           <label>Numero de piso</label>
           <select id="inputPiso" name="inputPiso" class="form-control">
+            <option selected value="{{datos.piso}}">{{datos.piso}}</option>
             <option value="Exterior">Exterior</option>
+            
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -172,6 +174,7 @@
         <div class="form-group row">
           <label>Lugar de Estacionamiento</label>
           <select id="inputLugar" name="inputLugar" class="form-control">
+            <option selected value="{{datos.numerolugar}}">{{datos.numerolugar}}</option>
             <option value="A">A</option>
             <option value="B">B</option>
             <option value="C">C</option>
@@ -187,16 +190,58 @@
 
 
 
-        <button type="button" class="btn btn-secondary">Comprobar</button>
-        <button type="submit" class="btn btn-primary">Actualizar</button>
+        <button type="button" class="btn btn-secondary" id="btn-comprobar" onclick="comprobar()">Verificar</button>
+        <button type="submit" class="btn btn-primary" id="btn-registrar" style="display: none;" >Agregar Estacionamiento</button>
       </form>
       <!--Aquí termina mi código :( -->
+      <div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              ...
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+              
+            </div>
+          </div>|
+        </div>
+      </div>
+
+
+
+
+      <div class="modal fade" id="errorfileModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              ...
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <script src="../static/js/jquery.min.js"></script>
     <script src="../static/js/popper.js"></script>
     <script src="../static/js/bootstrap.min.js"></script>
     <script src="../static/js/main.js"></script>
+    <script src="../../static/js/Estacionamiento/updateEsta.js"></script>
 </body>
 
 </html>
