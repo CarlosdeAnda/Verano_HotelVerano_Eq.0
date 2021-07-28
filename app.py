@@ -4,9 +4,10 @@ from flask import Flask,render_template,request,redirect,url_for,abort
 from flask_mysqldb import MySQL
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.utils import secure_filename
-from modelo.models import Empleados,Habitaciones,Estacionamiento,Clientes
+from modelo.models import Empleados,Habitaciones,Estacionamiento,Clientes,Reservacion
 from flask_login import LoginManager, login_user, current_user, logout_user, login_required
 import os
+from datetime import datetime
 
 app = Flask(__name__)
 app.secret_key = "s3cr3t"
@@ -341,14 +342,19 @@ def ventanaModificarReservacion():
 @app.route('/enviarReservacionAUpdate/<int:id>')
 @login_required
 def enviarReservacionAUpdate(id):
+    cliente=Clientes()
+    habitacion=Habitaciones()
+    estacionamiento=Estacionamiento()
+    datosCli=cliente.consultaGeneral()
+    datosHab=habitacion.consultaGeneral()
+    datosEst=estacionamiento.consultaGeneral()
     reservacion=Reservacion()
     reservacion.id_reservacion=id
     datos=reservacion.consultaIndividual()
-    return render_template('Reservaciones/UpdateReservacion.html',datos=datos)
+    return render_template('Reservaciones/UpdateReservacion.html',datos=datos,datosCli=datosCli,datosHab=datosHab,datosEst=datosEst)
 
 
-
-@app.route('/deleteReservacion/<int:id>')
+@app.route('/DelReservacion/<int:id>')
 def deleteReservacion(id):
 
     reservacion=Reservacion()
@@ -359,6 +365,34 @@ def deleteReservacion(id):
     return redirect(url_for('ventanaModificarReservacion'))
    
 
+@app.route('/addReservacionDB', methods=['POST'])
+def addReservacionDB():
+    r=Reservacion()
+    r.id_habitacion=request.form['inputDisponibles']
+    r.id_empleado=request.form['inputEmpleado']
+    r.id_clientes=request.form['inputCliente']
+    r.fecha_ingreso=request.form['inputFechaIngreso']
+    r.fecha_salida=request.form['inputFechaSalida']
+    r.lugar_estacionamiento=request.form['inputLugar']
+    r.fecha_reservacion=datetime.today().strftime('%Y-%m-%d')
+    r.estatus="Activo"
+    r.insertar()
+    
+    return redirect(url_for('ventanaModificarReservacion'))
+   
+@app.route('/updateReservacionDB', methods=['POST'])
+def updateReservacionDB():
+    r=Reservacion()
+    r.id_reservacion=request.form['idres']
+    r.id_habitacion=request.form['inputDisponibles']
+    r.id_empleado=request.form['inputEmpleado']
+    r.id_clientes=request.form['inputCliente']
+    r.fecha_ingreso=request.form['inputFechaIngreso']
+    r.fecha_salida=request.form['inputFechaSalida']
+    r.lugar_estacionamiento=request.form['inputLugar']
+    r.fecha_reservacion=datetime.today().strftime('%Y-%m-%d')
+    r.actualizar()
+    return redirect(url_for('ventanaModificarReservacion'))
 
 #Empieza MiPerfil
 @app.route('/MiPerfil')
