@@ -11,7 +11,7 @@ from datetime import datetime
 
 app = Flask(__name__)
 app.secret_key = "s3cr3t"
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://admin:admin@localhost/Hotel'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:admin@localhost/Hotel'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_POOL_SIZE'] = 100
 app.config['UPLOAD_FOLDER'] = "static/uploads/"
@@ -130,10 +130,8 @@ def actualizarEmpleadoBD():
     empleado.tipo=request.form['inputTipo']
     empleado.usuario=request.form['inputUsuario']
     empleado.passwd=request.form['inputPassword1']
-    empleado.foto=request.form['inputFoto']
     empleado.estatus_usuario="Activo"
-    Clave= empleado.apellido_paterno[:2]+empleado.apellido_materno[:1]+empleado.nombre[:1]+str(empleado.fecha_nacimiento.split("-")[0][2:])+str(empleado.fecha_nacimiento.split("-")[1])+empleado.fecha_nacimiento.split("-")[2]+random.choice(string.ascii_letters)+str(random.randrange(10))+random.choice(string.ascii_letters)
-    empleado.clave=Clave
+
     empleado.actualizar()
     return redirect(url_for('GetAllEmpleado'))
 
