@@ -71,12 +71,15 @@ CREATE TABLE IF NOT EXISTS Reservacion(
     foreign key(id_estacionamiento) references Estacionamiento(id_estacionamiento)
 );
 
+delete from Empleados 
+Where id_empleado=3;
 
 select * from Empleados;
 
 insert into Empleados values(1,"Elon","Musk","River","Masculino","1998-01-13","2021-07-23","351-280-0928","admin","admin","Administrador","Activo","MOGU130198","elon.jpg");
-insert into Empleados values(2,"Carlos","Esparza","De Anda","Masculino","1999-11-08","2021-07-23","351-215-0483","Carlos","123","Administrador","Activo","MOGU130198","elon.jpg");
-insert into Empleados values(3,"Luz","Gallardo","Gutierrez","Femenino","1996-08-14","2021-07-23","351-112-5514","Luz","123","General","Activo","MOGU130198","elon.jpg");
+insert into Empleados values(2,"Carlos","Esparza","De Anda","Masculino","1999-11-08","2021-07-23","351-215-0483","Carlos","123","Administrador","Activo","EsDJ9991108h4x","PicsArt_03-08-02.30.35.jpg");
+insert into Empleados values(3,"Luz","Gallardo","Gutierrez","Femenino","1996-08-14","2021-07-23","351-112-5514","Luz","123","General","Activo","EsDJ9991108h5x","IMG_20201117_132405.jpg");
+insert into Empleados values(4,"Observador","Gallardo","Alameda","Femenino","1996-08-14","2021-07-23","351-112-5514","Observador","123","Viewer","Activo","EsDJ9991108h6x","file.png");
 
 insert into Habitaciones values(1,1,"A","Desocupado","Chica","Activo");
 insert into Habitaciones values(2,2,"A","Desocupado","Mediana","Activo");
@@ -89,6 +92,3 @@ insert into Estacionamiento values(3,"Exterior","B","Desocupado","Activo");
 insert into Clientes values(1,"Pedro","Esparza","Navarrete","2021-07-23","351-280-0928","hola@123.com","Calle #1 blabla","Activo");
 insert into Clientes values(2,"Ramiro","Esparza","Gutierrez","2021-06-22","351-280-0548","adios@123.com","Calle #2 bleble","Activo");
 insert into Clientes values(3,"Clara","De Anda","Esparza","2021-08-10","351-890-0921","prueba@123.com","Calle #3 blubly","Activo");
-
-CREATE USER IF NOT EXISTS 'admin'@'database-1.cwgfqihazsc6.us-west-2.rds.amazonaws.com/' IDENTIFIED BY 'admin';
-GRANT ALL PRIVILEGES ON Hotel.* TO 'admin'@'database-1.cwgfqihazsc6.us-west-2.rds.amazonaws.com';
