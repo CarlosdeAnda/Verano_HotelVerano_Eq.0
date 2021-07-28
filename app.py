@@ -10,7 +10,7 @@ import os
 
 app = Flask(__name__)
 app.secret_key = "s3cr3t"
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://admin:password@database-4.cwgfqihazsc6.us-west-2.rds.amazonaws.com/Hotel'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:admin@localhost/Hotel'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_POOL_SIZE'] = 100
 app.config['UPLOAD_FOLDER'] = "static/uploads/"
@@ -343,6 +343,16 @@ def deleteReservacion(id):
     reservacion.actualizar()
     return redirect(url_for('ventanaModificarReservacion'))
    
+
+
+#Empieza MiPerfil
+@app.route('/MiPerfil')
+def ventanamiPerfil():
+    return render_template('MiPerfil/MiPerfil.html')
+
+
+
+
 
 
 

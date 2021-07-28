@@ -23,8 +23,11 @@
           <br>
           {{current_user.tipo}}
         </center>
-
-        <br>
+        <center>
+          <br>
+          <a class="btn btn-outline-warning" href="template" role="button">Hotel Verano</a>
+          <br>
+        </center>
         <ul class="list-unstyled components mb-5">
           <li>
             <a href="#Empleados" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Empleados</a>
@@ -176,7 +179,7 @@
       <div class="row">
         <div class="col">
         <label for="inputTelefono">Telefono</label>
-        <input type="tel" class="form-control" id="inputTelefono" name="inputTelefono" >
+        <input type="tel" class="form-control" id="inputTelefono" name="inputTelefono" placeholder="000-00-0000" >
       </div>
       <div class="col">
         <label for="inputTipo">Tipo de Empleado</label>
@@ -184,7 +187,7 @@
           <option selected>Selecciona...</option>
           <option value="Administrador">Administrador</option>
           <option value="General">General</option>
-
+          <option value="Viewer">Viewer</option>
         </select>
         </div>
 
@@ -194,15 +197,15 @@
       <div class="row">
         <div class="col">
         <label for="inputUsuario">Nombre de Usuario</label>
-        <input type="text" class="form-control" id="inputUsuario" name="inputUsuario" >
+        <input type="text" class="form-control" id="inputUsuario" name="inputUsuario" placeholder="Mín. 8 Caracteres">
       </div>
       <div class="col">
         <label for="inputPassword1">Contraseña</label>
-        <input type="password" class="form-control" id="inputPassword1" name="inputPassword1">
+        <input type="password" class="form-control" id="inputPassword1" name="inputPassword1" placeholder="Contraseña">
         </div>
         <div class="col">
           <label for="inputPassword2"> Repite Contraseña</label>
-          <input type="password" class="form-control" id="inputPassword2" >
+          <input type="password" class="form-control" id="inputPassword2" placeholder="Repite tu contraseña">
           </div>
 
       </div>

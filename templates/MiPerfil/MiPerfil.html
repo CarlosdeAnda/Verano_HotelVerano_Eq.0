@@ -24,10 +24,10 @@
           {{current_user.tipo}}
         </center>
         <center>
-          <br>
-          <a class="btn btn-outline-warning" href="template" role="button">Hotel Verano</a>
-          <br>
-        </center>
+        <br>
+        <a class="btn btn-outline-warning" href="template" role="button">Hotel Verano</a>
+        <br>
+      </center>
         <ul class="list-unstyled components mb-5">
           <li>
             <a href="#Empleados" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Empleados</a>
@@ -128,91 +128,79 @@
       <br>
 
       <!-- Aqui inicia mi código :) -->
-      <h3>Añadir Reservación <span class="badge badge-secondary">Nuevo</span></h3>
-      <form method="POST" action="/agregarEmpleadoBD" enctype="multipart/form-data">
-        <div class="row">
-
-                
-      
-        <div class="col">
-        <label for="inputEmpleado">Empleado</label>
-        <select id="inputEmpleado" name="inputEmpleado" class="form-control" >
-          <option selected value="{{current_user.id_empleado}}">{{current_user.nombre}} </option>
-        </select>
-        </div>
+      <div class="text-center">
+        <img src="../../static/uploads/{{current_user.clave}}/{{current_user.foto}}" class="img-thumbnail" width="150"alt="...">
       </div>
       <br>
-      
+      <h2 class="text-center">{{current_user.nombre}} {{current_user.apellido_paterno}} {{current_user.apellido_materno}}</h2>
+      <center>
+      <div class="card" style="width: 18rem;">
+        <div class="card-header">
+          {{current_user.tipo}}
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Usuario: {{current_user.usuario}}</li>
+          <li class="list-group-item">ID Usuario: {{current_user.id_empleado}}</li>
+          <li class="list-group-item">Telefono: {{current_user.telefono}}</li>
+          <li class="list-group-item">Fecha de Registro: {{current_user.fecha_registro}}</li>
+          <li class="list-group-item">Fecha de Nacimiento: {{current_user.fecha_nacimiento}}</li>
+        </ul>
+      </div>
+    </center>
+      <!--Aquí termina mi código :( -->
 
-      <div class="row">
-        <div class="col">
-        <label for="inputCliente">Clientes Disponibles</label>
-        <select id="inputCliente" name="inputCliente" class="form-control" >
-          {% for x in datosCli %}
-          {% if x.estatus_cliente == "Activo" %}
-          <option value="{{x.id_cliente}}">{{x.nombre}}</option>
-          {% endif %}
-          {% endfor %}
-          
-        </select>
+
+      <div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              ...
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+              
+            </div>
+          </div>|
         </div>
       </div>
-      
-  
-          <br>
-          <div class="row">
-            <div class="col">
-            <label for="inputDisponibles">Habitaciones Disponibles</label>
-            <select id="inputDisponibles" name="inputDisponibles" class="form-control" >
-              {% for x in datosHab %}
-              {% if x.disponibilidad == "Desocupado" %}
-              <option value="{{x.id_habitacion}}">{{x.piso}}-{{x.numerohabitacion}} : {{x.tipohabitacion}}</option>
-              {% endif %}
-              {% endfor %}
-            </select>
+
+
+
+
+      <div class="modal fade" id="errorfileModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              ...
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
           </div>
-          <br>
-
-        <div class="row">
-          <div class="col">
-          <label for="inputFechaIngreso">Fecha de Ingreso</label>
-          <input type="date" class="form-control" id="inputFechaIngreso" name="inputFechaIngreso">
-        </div>
-
-        <div class="col">
-        <label for="inputFechaSalida">Fecha de Salida</label>
-        <input type="date" class="form-control" id="inputFechaSalida" name="inputFechaSalida">
-      </div>
-      </div>
-      <br>
-
- 
-      <div class="row">
-        <div class="col">
-        <label for="inputLugar">Lugares Estacionamiento Disponibles</label>
-        <select id="inputLugar" name="inputLugar" class="form-control" >
-          <option value="">No requiere estacionamiento</option>
-          {% for x in datosEst %}
-          {% if x.disponibilidad == "Desocupado" %}
-          <option value="{{x.id_habitacion}}">{{x.piso}}-{{x.numerolugar}}</option>
-          {% endif %}
-          {% endfor %}
-        </select>
         </div>
       </div>
-      <br>
 
-        <button type="button" class="btn btn-secondary">Verificar</button>
-        <button type="submit" class="btn btn-primary" >Agregar Reservación</button>
-      </form>
-      <!--Aquí termina mi código :( -->
+
+
     </div>
 
     <script src="../static/js/jquery.min.js"></script>
     <script src="../static/js/popper.js"></script>
     <script src="../static/js/bootstrap.min.js"></script>
     <script src="../static/js/main.js"></script>
+    <script src="../../static/js/Empleados/AddEmpleados.js"></script>
 </body>
 
 </html>
