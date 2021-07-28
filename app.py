@@ -9,6 +9,13 @@ from flask_login import LoginManager, login_user, current_user, logout_user, log
 import os
 from datetime import datetime
 
+
+# Página Web Hotel Verano desarrollada por Carlos Esparza para la materia de Verano Programación WEB.
+# José Carlos Esparza de Anda
+# ISC 
+# Profesor: Roberto Suarez Zinzun
+
+
 app = Flask(__name__)
 app.secret_key = "s3cr3t"
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:admin@localhost/Hotel'
