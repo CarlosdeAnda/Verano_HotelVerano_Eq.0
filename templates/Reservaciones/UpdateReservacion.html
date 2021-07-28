@@ -156,87 +156,131 @@
           </div>
                 
       
-        <div class="col">
-        <label for="inputEmpleado">Empleado</label>
-        <select id="inputEmpleado" name="inputEmpleado" class="form-control" >
-          <option selected value="{{datos.id_empleado}}">{{datos.empres.nombre}} {{datos.empres.apellido_paterno}} {{datos.empres.apellido_materno}} </option>
-        </select>
-        </div>
-      </div>
-      <br>
-      
-
-      <div class="row">
-        <div class="col">
-        <label for="inputCliente">Clientes Disponibles</label>
-        <select id="inputCliente" name="inputCliente" class="form-control" >
-          
-          {% for x in datosCli %}
-          {% if x.estatus_cliente == "Activo" or x.nombre == datos.clires.nombre %}
-          
-          <option value="{{x.id_clientes}}">{{x.nombre}} {{x.apellido_paterno}} {{x.apellido_materno}}</option>
-          {% endif %}
-          {% endfor %}
-          
-        </select>
-        </div>
-      </div>
-      
-  
+          <div class="col">
+            <label for="inputEmpleado">Empleado</label>
+            <select id="inputEmpleado" name="inputEmpleado" class="form-control" >
+              <option selected value="{{current_user.id_empleado}}">{{current_user.nombre}} {{current_user.apellido_paterno}} {{current_user.apellido_materno}} </option>
+            </select>
+            </div>
+          </div>
           <br>
+          
+    
           <div class="row">
             <div class="col">
-            <label for="inputDisponibles">Habitaciones Disponibles</label>
-            <select id="inputDisponibles" name="inputDisponibles" class="form-control" >
-              <option value="{{datos.id_habitacion}}">{{datos.habres.piso}}-{{datos.habres.numerohabitacion}} : {{datos.habres.tipohabitacion}}</option>
-              {% for x in datosHab %}
-              {% if x.disponibilidad == "Desocupado"  or x.tipohabitacion == datos.habres.tipohabitacion %}
-              <option value="{{x.id_habitacion}}">{{x.piso}}-{{x.numerohabitacion}} : {{x.tipohabitacion}}</option>
+            <label for="inputCliente">Clientes Disponibles</label>
+            <select id="inputCliente" name="inputCliente" class="form-control" >
+              
+              {% for x in datosCli %}
+              {% if x.estatus_cliente == "Activo" %}
+              <option value="{{x.id_clientes}}">{{x.nombre}} {{x.apellido_paterno}} {{x.apellido_materno}}</option>
+              {% endif %}
+              {% endfor %}
+              
+            </select>
+            </div>
+          </div>
+          
+      
+              <br>
+              <div class="row">
+                <div class="col">
+                <label for="inputDisponibles">Habitaciones Disponibles</label>
+                <select id="inputDisponibles" name="inputDisponibles" class="form-control" >
+                  {% for x in datosHab %}
+                  {% if x.disponibilidad == "Desocupado" %}
+                  <option value="{{x.id_habitacion}}">{{x.piso}}-{{x.numerohabitacion}} : {{x.tipohabitacion}}</option>
+                  {% endif %}
+                  {% endfor %}
+                </select>
+                </div>
+              </div>
+              <br>
+    
+            <div class="row">
+              <div class="col">
+              <label for="inputFechaIngreso">Fecha de Ingreso</label>
+              <input type="date" class="form-control" id="inputFechaIngreso" name="inputFechaIngreso">
+            </div>
+    
+            <div class="col">
+            <label for="inputFechaSalida">Fecha de Salida</label>
+            <input type="date" class="form-control" id="inputFechaSalida" name="inputFechaSalida">
+          </div>
+          </div>
+          <br>
+    
+     
+          <div class="row">
+            <div class="col">
+            <label for="inputLugar">Lugares Estacionamiento Disponibles</label>
+            <select id="inputLugar" name="inputLugar" class="form-control" >
+              <option value="No">No requiere estacionamiento</option>
+              {% for x in datosEst %}
+              {% if x.disponibilidad == "Desocupado" %}
+              <option value="{{x.numerolugar}}">{{x.piso}}-{{x.numerolugar}}</option>
               {% endif %}
               {% endfor %}
             </select>
             </div>
           </div>
           <br>
+    
 
-        <div class="row">
-          <div class="col">
-          <label for="inputFechaIngreso">Fecha de Ingreso</label>
-          <input type="date" class="form-control" value="{{datos.fecha_ingreso}}" id="inputFechaIngreso" name="inputFechaIngreso">
-        </div>
-
-        <div class="col">
-        <label for="inputFechaSalida">Fecha de Salida</label>
-        <input type="date" class="form-control" id="inputFechaSalida" value="{{datos.fecha_salida}}" name="inputFechaSalida">
-      </div>
-      </div>
-      <br>
-
- 
-      <div class="row">
-        <div class="col">
-        <label for="inputLugar">Lugares Estacionamiento Disponibles</label>
-        <select id="inputLugar" name="inputLugar" class="form-control" >
-          {% for x in datosEst %}
-          {% if x.disponibilidad == "Desocupado" %}
-          <option value="{{x.id_habitacion}}">{{x.piso}}-{{x.numerolugar}}</option>
-          {% endif %}
-          {% endfor %}
-        </select>
-        </div>
-      </div>
-      <br>
-
-        <button type="button" class="btn btn-secondary">Verificar</button>
-        <button type="submit" class="btn btn-primary" >Modificar Reservación</button>
+      <button type="button" class="btn btn-secondary" id="btn-comprobar" onclick="comprobar()">Verificar</button>
+      <button type="submit" class="btn btn-primary" id="btn-registrar" style="display: none;" >Agregar Reservacion</button>
       </form>
       <!--Aquí termina mi código :( -->
+      <div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              ...
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+              
+            </div>
+          </div>|
+        </div>
+      </div>
+
+
+
+
+      <div class="modal fade" id="errorfileModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              ...
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
     </div>
 
     <script src="../static/js/jquery.min.js"></script>
     <script src="../static/js/popper.js"></script>
     <script src="../static/js/bootstrap.min.js"></script>
     <script src="../static/js/main.js"></script>
+    <script src="../../static/js/Reservaciones/addReservaciones.js"></script>
 </body>
 
 </html>

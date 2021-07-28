@@ -211,10 +211,10 @@
         <div class="col">
         <label for="inputLugar">Lugares Estacionamiento Disponibles</label>
         <select id="inputLugar" name="inputLugar" class="form-control" >
-          <option value="">No requiere estacionamiento</option>
+          <option value="No">No requiere estacionamiento</option>
           {% for x in datosEst %}
           {% if x.disponibilidad == "Desocupado" %}
-          <option value="{{x.id_habitacion}}">{{x.piso}}-{{x.numerolugar}}</option>
+          <option value="{{x.numerolugar}}">{{x.piso}}-{{x.numerolugar}}</option>
           {% endif %}
           {% endfor %}
         </select>
@@ -222,16 +222,59 @@
       </div>
       <br>
 
-        <button type="button" class="btn btn-secondary">Verificar</button>
-        <button type="submit" class="btn btn-primary" >Agregar Reservación</button>
+      <button type="button" class="btn btn-secondary" id="btn-comprobar" onclick="comprobar()">Verificar</button>
+      <button type="submit" class="btn btn-primary" id="btn-registrar" style="display: none;" >Agregar Reservacion</button>
       </form>
       <!--Aquí termina mi código :( -->
+      <div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              ...
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+              
+            </div>
+          </div>|
+        </div>
+      </div>
+
+
+
+
+      <div class="modal fade" id="errorfileModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              ...
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     </div>
 
     <script src="../static/js/jquery.min.js"></script>
     <script src="../static/js/popper.js"></script>
     <script src="../static/js/bootstrap.min.js"></script>
     <script src="../static/js/main.js"></script>
+    <script src="../../static/js/Reservaciones/addReservaciones.js"></script>
 </body>
 
 </html>
